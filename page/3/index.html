@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-mysql必知必会笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/15/mysql必知必会笔记/" class="article-date">
+  <time datetime="2019-01-15T05:41:05.000Z" itemprop="datePublished">2019-01-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/15/mysql必知必会笔记/">mysql必知必会笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="chapter3-了解数据库和表"><a href="#chapter3-了解数据库和表" class="headerlink" title="chapter3  了解数据库和表"></a>chapter3  了解数据库和表</h1><p>DOS命令行登录指令：mysql -u 用户名 -p   然后回撤，键入password；<br>每一条mysql语句必须以“;”结束才能正确执行<br>选择数据库：use 数据库名；<br>查看数据库的信息：show databases;返回一个数据库列表；<br>查看数据库内表的列表：show tables；<br>查看某一个表的表列：show columns from 表名；每一个字段返回一行，也可以使用describe 表名；来查看表的信息<br>查看用来创建特定数据库的mysql语句：show create database 数据库名；<br>查看用来创建特定表的mysql语句：show create table 表名；</p>
+<h1 id="chapter4-检索数据"><a href="#chapter4-检索数据" class="headerlink" title="chapter4 检索数据"></a>chapter4 检索数据</h1><h4 id="检索单个列表"><a href="#检索单个列表" class="headerlink" title="检索单个列表"></a>检索单个列表</h4><p>命令：select 列名 from 表名；<br>所需列名在select关键字后面给出，from给出从其中检索数据的表名。<br>SQL语句不区分大小写，但是便于阅读和调试，对所有的关键字使用大写，所有的列名和表名都使用小写。<br>在处理SQL语句时，其中所有空格都被忽略。SQL语句可以在一行上给出，也可以分成许多行。</p>
+<h4 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h4><p>命令： SELECT 列名，列名，列名 FROM 表名；<br>选择多个列时，要在列名中间加逗号，但最后一个列名后不加</p>
+<h4 id="检索所有的列"><a href="#检索所有的列" class="headerlink" title="检索所有的列"></a>检索所有的列</h4><p>命令：SELECT <em> FROM 表名；<br>如果给定一个通配符(</em>),则返回列表的所有列<br>一般除非你确实你需要表中的每个列，否则不要使用通配符，检索不需要的列通常会降低检索和应用程序的性能</p>
+<h4 id="检索不同的行"><a href="#检索不同的行" class="headerlink" title="检索不同的行"></a>检索不同的行</h4><p>当你检索某一个字段时，会检索这个字段的所有行，但是可能这些行中有许多相同的字段，而你只需不同的字段，这时你只需要使用 DISTINCT关键字；<br>命令：SELECT DISTINCT 列名 FROM 表名；<br>DINSTINCT关键字必须放在列名的前面<br>不能不分使用DISTINCT<br>DINSTINCT关键字应用于所有列而不仅仅是前置它的列。如果给出 SELECT DISCINCT 列名，列名 FROM 表名；除非指定的列不同，否则所有行都将被检索出来。<br>也就是同时指定了两个字段，就是两个字段的字都是相同的行才会被排除在外。</p>
+<h4 id="限制结果"><a href="#限制结果" class="headerlink" title="限制结果"></a>限制结果</h4><p>SELECT语句返回所有匹配的行，他们可能是指定表中的每个行，为了返回第一行或前几行，课使用LIMIT句子：<br>命令：SELENT 列名 FROM 表名  LIMIT num；<br>例：如果num=5，则返回的结果不多以5行，如果想显示后五行这可以使用：<br>命令：SELECT 列名 FROM 表名 LIMIT 5,5；这样就会显示从第六行到第10行的内容；<br>其中第一个数为开始检索的位置，第二个数为检索的条数。</p>
+<p>带一个值的LIMIT总是从第一行开始，给出的数为返回的行数，带两个值的LIMIT可以指定从行号为第一个值的位置开始。</p>
+<p>行0    检测出来的第一行为行0而不是行1，因此LIMIT 1,1，将检测出第二行而不是第一行。</p>
+<p>行数不够时，只返回能返回的行。</p>
+<h4 id="使用完全限定的表名"><a href="#使用完全限定的表名" class="headerlink" title="使用完全限定的表名"></a>使用完全限定的表名</h4><p>SELECT  表名.列名  from 数据库名.表名</p>
+<h1 id="chapter5-排序检索数据"><a href="#chapter5-排序检索数据" class="headerlink" title="chapter5 排序检索数据"></a>chapter5 排序检索数据</h1><h4 id="排序数据"><a href="#排序数据" class="headerlink" title="排序数据"></a>排序数据</h4><p>关系数据库设计理论认为，如果不明确规定排序顺序，则不应该假定检索出的数据的顺序有意义<br>为了明确地排序用SELECT语句检索出的数据，可使用 ORDER BY子句。ORDER BY 子句取一个或多个列的名字，据此对输出进行排序。<br>命令：SELECT  列名  FROM  表名  ORDER  BY  列</p>
+<h4 id="按多个列排序"><a href="#按多个列排序" class="headerlink" title="按多个列排序"></a>按多个列排序</h4><p>按多个列排序，只需要指定列名，列名之间用逗号分开即可：<br>SELECT 列名1，列名2，列名3 FROM 表名  ORDER BY 列名1，列名2；<br>检索出数据后，先按列名1排序，再按列名2排序。要注意：只有在有相同的列名1时，才对列名2进行排序</p>
+<h4 id="指定排序方向"><a href="#指定排序方向" class="headerlink" title="指定排序方向"></a>指定排序方向</h4><p>数据排序不限于升序（A到Z）。这只是默认的排序顺序，还可以使用ORDER BY子句以降序（Z到A）顺序排序，为了进行降序排序必须z指定DESC 关键字。<br>命令行：SELECT 列名1，列名2，列名3 FROM 表名  ORDER BY 列名1 DESC；</p>
+<p>DESC关键字只能应用到直接位于其前面的列名，如果想在多个列之间进行排序，必须对每个列指定DESC关键字<br>命令：SELECT 列名1，列名2，列名3 FROM 表名 ORDER BY 列名1 DESC，列名2 DESC；</p>
+<p>与DESC相反的关键字是ASC，不过默认的都是升序  </p>
+<p>ORDER  BY子句的位置<br>在给出ORDER BY子句时，应该保证它位于FROM子句之后，如果使用LIMIT，它必须位于ORDER BY之后。使用的次序不对将产生错误消息。   </p>
+<h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><h4 id="使用WHERE子句"><a href="#使用WHERE子句" class="headerlink" title="使用WHERE子句"></a>使用WHERE子句</h4><p>在SELECT语句中，数据根据WHERE子句中指定的搜索条件进行过滤，WHERE子句在表名（FROM子句）之后给出：<br>命令：SELECT 列名1，列名2 FROM 表名 WHERE 列名=值<br>where子句的位置，在同时使用ORDER BY和WHERE子句时，应该让ORDER BY位于WHERE之后            </p>
+<p>####WHERE子句操作符<br>（1）= 等于 （2）&lt;&gt; 不等于（3）!=  不等于（4） &lt; 小于 （5）&lt;= 小于等于  （6）&gt; 大于<br>（7） &gt;= 大于等于  （8） BETWEEN  在指定的两个值之间<br>在编写sql语句时何时使用引号：<br>如果将值与串类型的列进行比较，则需要限定限定引号。用来与数值列进行比较的值不用引号</p>
+<h5 id="范围值查找"><a href="#范围值查找" class="headerlink" title="范围值查找"></a>范围值查找</h5><p>命令： SELECT 列名1，列名2 FROM 表名 WHERE BETWEEN 值1  AND 值2；<br>在使用BETWEEN时，必须指定两个值–所需范围的低端值和高端值。这两个值必须用AND关键字分割。BETWEEN匹配范围中所有的值，包括指定的开始值和结束值。</p>
+<p>#####空值检查<br>NULL 无值，它与字段包含0，空字符串或仅仅包含空格不同。<br>SELECT语句有一个特殊的WHERE子句，可用来检查具有NULL值的列，这个WHERE语句就是  IS NULL<br>命令：SELECT  列名1 FROM  表名 WHERE 列名2 IS NULL；<br>此条语句会查询出列2为NULL值的列名1的字段</p>
+<p>NULL与不匹配</p>
+<p>在通过过滤选择出不具有特定值的行时，你可能希望返回具有NULL值的行。但是，不行。因为未知具有特殊含义，数据库不知道他们是否匹配，所以在匹配过滤或不匹配过滤时不返回它们。</p>
+<p>因此在过滤数据时，一定要验证返回数据中确实给出了被过滤列具有NULL的行</p>
+<h1 id="数据过滤"><a href="#数据过滤" class="headerlink" title="数据过滤"></a>数据过滤</h1><h2 id="组合WHERE子句"><a href="#组合WHERE子句" class="headerlink" title="组合WHERE子句"></a>组合WHERE子句</h2><p>Mysql允许给出多个WHERE子句。这些子句可以以两种方式使用：以AND子句的方式或OR子句的方式</p>
+<h3 id="AND操作符"><a href="#AND操作符" class="headerlink" title="AND操作符"></a>AND操作符</h3><p>为了通过不止一个列进行过滤，可使用AND操作符给WHERE子句附条件<br>命令：SELECT 列名1，列名2，列名3  FROM  表名  WHERE  列名1=值  AND 列名2&lt;=z值;</p>
+<h3 id="OR操作符"><a href="#OR操作符" class="headerlink" title="OR操作符"></a>OR操作符</h3><p>OR操作符与AND操作符不同，它指示MYSQL检索匹配任一条件的行<br>命令：<br>命令：SELECT 列名1，列名2，列名3  FROM  表名  WHERE  列名1=值  OR 列名2&lt;=z值;</p>
+<h3 id="计算次序"><a href="#计算次序" class="headerlink" title="计算次序"></a>计算次序</h3><p>WHERE可以包含任意数量的AND和OR操作符，允许两者结合以进行复杂和高级的过滤<br>AND在计算次序中的优先级比OR高，对于这种情况有时可以使用括号进行分组<br>命令：SELECT 列名1,列名2,列名3 FROM 表 WHERE （列名1=值 OR 列名2&lt;=值）AND 列名3=值</p>
+<h2 id="IN操作符"><a href="#IN操作符" class="headerlink" title="IN操作符"></a>IN操作符</h2><p>圆括号在WHERE子句中海油另外一种用法。IN操作符用来指定条件范围，范围中的每个条件都可以进行匹配。IN取的合法值是由逗号分隔的清单，全部括在圆括号中。<br>例如：IN操作符后面跟有  逗号  分隔的清单，整个清单必须在圆括号中<br>命令：SELECT 列名1，列名2，列名3 FROM 表 WHERE 字段 IN（值1，值2）ORDER  BY  列名；<br>使用IN操作符的优点：<br>（1）    在使用长的合法选项清单时，IN操作符的语法更清楚且更直观<br>（2）    在使用IN时，计算的次序更容易管理<br>（3）    IN操作符一般比OR操作符清单执行更快<br>（4）    IN的最大优点是可以包含其他SELECT语句，使得能够更动态地建立WHERE子句。</p>
+<p>##NOT操作符<br>WHERE子句中的NOT操作符有且只有一个功能，那就是否定它之后所跟的任何条件<br>例：SELECT 列名1，列名2，列名3  FROM 表名 WHERE  字段1 NOT IN（值1，值2）ORDER BY 字段2；</p>
+<p>MYSQL支持使用NOT对IN，BETWEEN和EXISTS子句取反，这与多数其他的DBMS允许使用NOT对各种条件取反有很大的差别</p>
+<p>#用通配符进行过滤</p>
+<h2 id="LIKE操作符"><a href="#LIKE操作符" class="headerlink" title="LIKE操作符"></a>LIKE操作符</h2><p>通配符：用来匹配值的一部分的特殊字符</p>
+<h3 id="百分号（-）通配符"><a href="#百分号（-）通配符" class="headerlink" title="百分号（%）通配符"></a>百分号（%）通配符</h3><p>在搜索中，%表示任何字符出现任意次数<br>例如：SELECT 列名1，列名2，列名3 FROM 表名 WHERE 列名1  LIKE ‘jet%’;<br>在执行这条子句时，将检索任意以jet起头的词。%告诉MYSQL接收jet之后的任意字符，不管它有多少字符。<br>通配符可在搜索模式中任意位置使用，并且可以使用多个通配符。<br>SELECT 列名1，列名2 FROM  表名  WHERE  字段  LIKE ‘%jet%’;匹配包含’jet’的文本。<br>SELECT 列名1，列名2 FROM  表名  WHERE  字段  LIKE  ‘s%e’;匹配以s开头和以e结尾的文本。<br>尾空格可能会干扰通配符的匹配。注意 ‘%’不能匹配 NULL值</p>
+<h3 id="下划线（-）通配符"><a href="#下划线（-）通配符" class="headerlink" title="下划线（-）通配符"></a>下划线（-）通配符</h3><p>另外一个有用的通配符是下划线（-）。下划线的用途与%一样，单下划线只匹配单个字符而不是多个字符。<br>与%能匹配0个字符不一样，（-）总是匹配一个字符，不能多也不能少。</p>
+<p>###通配符的几个技巧<br>（1）    不要过度使用通配符。如果其他操作符能达到相同的目的，应该使用其他操作符。(搜索速度慢)<br>（2）    在确实需要使用通配符时，除非绝对有必要，否则不要把它们用在搜索模式的额开始出。把通配符置于搜索模式的开始处，搜索起来是最慢的。<br>（3）    仔细注意通配符的位置。如果放错地方，可能不会反悔想要的数据。</p>
+<h1 id="用正则表达式进行搜索"><a href="#用正则表达式进行搜索" class="headerlink" title="用正则表达式进行搜索"></a>用正则表达式进行搜索</h1><p>##基本的字符匹配<br>例：SELECT 列名1 FROM 表 WHERE  列名1 REGEXP ‘1000’ORDER  BY 列名1；</p>
+<p>LIKE与REGEXP之间的差别：<br>SELECT 列名1 FROM 表 WHERE  列名1  LIKE ‘1000’ORDER  BY 列名1；<br>SELECT 列名1 FROM 表 WHERE  列名1  REGEXP ‘1000’ORDER  BY 列名1；<br>执行上面的两条语句，第一条不会返回数据，而第二条语句返回一行</p>
+<p>LIKE匹配整个列。如果被匹配的文本在列值中出现，LIKE将不会找到它，相应的行也不被返回（除非使用通配符）。而REGEXP在列值内进行匹配，如果被匹配的文本在列值中出现，REGEXP将会找到它，相应的行将被返回</p>
+<h3 id="进行OR匹配"><a href="#进行OR匹配" class="headerlink" title="进行OR匹配"></a>进行OR匹配</h3><p>为搜索两个串之一，使用 |<br>例如：SELECT 列名1，列名2 FROM 表名 WHERE 列名 REGEXP  ‘1000|2000’ ORDER BY字段;</p>
+<h3 id="匹配几个字符之一"><a href="#匹配几个字符之一" class="headerlink" title="匹配几个字符之一"></a>匹配几个字符之一</h3><p>匹配任何单一字符。如果想要匹配匹配特定字符，可通过指定一组用[]括起来的字符来完成例如：<br>SELECT 列名1 FROM WHERE 字段1 REGEXP ‘[123]TOM‘;<br>[123]意识是匹配1或2或3<br>集合也可以被否定，即他们将匹配除指定字符外的任何东西。<br>为一个否定字符集，在集合的开始处放置一个^即可。因此，尽管[123]匹配字符1,2或3；但[^123]却匹配出这些字符外的任何东西</p>
+<p>###范围匹配<br>集合可用来定义要匹配的一个或多个字符  例:[123456789]<br>为了简化这种类型的集合，可以使用‘-‘   [1-9]<br>范围不限于数字  字符也是可以的  [a-z]</p>
+<p>###匹配特殊字符<br>‘.‘匹配任意字符<br>为了匹配特殊字符，必须用\为前导。\-表示查找-，\.表示查找’ . ’;</p>
+<h3 id="匹配多个实例"><a href="#匹配多个实例" class="headerlink" title="匹配多个实例"></a>匹配多个实例</h3><p>重复单元符：<br>（1）     0个或多个匹配 （2） +  1个或多个匹配 （3）？ 0个或1个匹配<br>（4）{n}  指定数目的匹配 （5）{n,} 不少于指定数目的匹配  (6)（n,m）匹配数目的范围（m不超过255）</p>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>为了匹配特定位置的文本需要使用定位符<br>（1）^  文本的开始（2） $ 文本的结尾（3）[[:&lt;:]] 词的开始（4）[[:&gt;:]] 词的结尾</p>
+<h1 id="chapter10-创建计算字段"><a href="#chapter10-创建计算字段" class="headerlink" title="chapter10  创建计算字段"></a>chapter10  创建计算字段</h1><p>##字段拼接<br>将值连接到一起构成单个值，可以利用CONCAT（）函数将两个列拼接起来；<br>多数的DBMS使用+或||来实现拼接，Mysql则使用Concat（）函数来实现。<br>示例：SELECT CONCAT（列名1,’(‘,列名2，‘)’) From 表名 ORDER BY 列名；<br>CONCAT（）拼接串，即把多个串连接起来形成一个较长的串，需要一个或多个指定的串，各个串之间用逗号分隔</p>
+<p>如果要删除数据右侧的空格，则可以使用RTRIM（）函数来完成<br>例如：<br>命令：SELECT CONCAT（RTrim（列名1），’(‘,RTrim(列名2)，’)’）FROM 表名;<br>RTRIM（字段）去掉值右边所有的空格。去除右边的空格用Ltrim();</p>
+<h2 id="使用别名’"><a href="#使用别名’" class="headerlink" title="使用别名’"></a>使用别名’</h2><p>SQl语句中的别名用AS关键字赋予.<br>命令：SELECT CONCAT（RTrim（列名1），‘（’，RTRIM（列名2），’)’） AS 别名 FROM 表名；</p>
+<h2 id="执行算数计算"><a href="#执行算数计算" class="headerlink" title="执行算数计算"></a>执行算数计算</h2><p>MYSQL算术操作表：（1）+  加（2） -  减号（3）<em> 乘（4）/<br>命令：SELECT  列名1，列名2，列名1</em>列名2 AS 别名 FROM 表名 WHERE 列名1=值；<br>另外SELECT Now（）利用Now（）函数返回当前日期和时间。</p>
+<h1 id="使用数据处理函数"><a href="#使用数据处理函数" class="headerlink" title="使用数据处理函数"></a>使用数据处理函数</h1><p>UPPER（字段）函数将文本转换为大写<br>常用的文本处理函数：<br>（1）left()  返回串左边的字符  （2）Length（）  返回串的长度<br>（3）Locate（）找出串的一个子串 （4）Lower（）  将串转换为小写<br>（5）Ltrim()  去掉串左边的空格  （6）Right（）  返回串右边的字符<br>（7）Rtrim()  去掉串右边的空格  （8）Soundex()  返回串的SOUDEX值<br>（9）SubString() 返回子串的字符  （10）Upper()  将串转换为大写</p>
+<p>其中Soundex()考虑了类的发音字符和音节，使得能对串进行发音比较而不是字符字母比较<br>例如：SELECT 列名1，列名2 FROM 表名 WHERE Soundex（列名1）=Soundex（’Y Lie’）;</p>
+<h2 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h2><p>日期和时间采用响应的数据类型和特殊的格式存储，以便能快速和有效地排序和过滤<br>不过是插入或更新表值还是用WHERE子句进行过滤，日期必须为格式yyyy-mm-dd；应该总是使用4位数字的年份。</p>
+<p>DATE(order_date)函数只是MySQL仅提取列的日期部分，当然如果只想要时间值可以使用TIME（）函数</p>
+<p>如果先要单独的提取某年某月的数据则可以使用以下指令：<br>SELECT  列名1，列名2 FROM 表名  WHERE DATE（日期字段） BETWEEN ‘2005-09-01’ AND ‘2005-09-30’;<br>另外还可以使用：<br>SELECT 列名1，列名2 FROM 表名  WHERE YEAR（日期字段）=2005 AND MONTH（日期字段）=9；</p>
+<h2 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h2><p>常用的数字处理函数：<br>函数:(1) abs()   返回一个数的绝对值   （2）Cos（）  返回一个角度的余弦 （3）Exp（）  返回一个数的指数值<br>（4）Mod（）  返回除操作的余数（5）Pi  返回圆周率  （6）Rand（）  返回一个随机数<br>（7）Sin（）  返回一个角度的正弦  （8）Sqrt()   返回一个数的平方根  （9） Tan（）  返回一个角度的正切。</p>
+<h1 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h1><h2 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h2><p>（1）AVG（）   返回某列的平均值  （2）COUNT（）  返回某列的行数<br>（3）MAX（）   返回某列的最大值  （4）MIN（）  返回某列的最小值<br>（5）SUM（）   返回某列值之和</p>
+<h3 id="AVG（）"><a href="#AVG（）" class="headerlink" title="AVG（）"></a>AVG（）</h3><p>命令：SELECT AVG（列1） AS 别名  FROM 表名； 返回所有列的平均值<br>命令：SELECT AVG（字段） AS  别名  FROM 表名 WHERE  字段=值；用来确定特定列或行的平均值；<br>AVG（）函数忽略列值为NULL的行，如果要获得多个列的平均值，必须使用多个AVG（）函数</p>
+<h3 id="COUNT（）"><a href="#COUNT（）" class="headerlink" title="COUNT（）"></a>COUNT（）</h3><p>COUNT（）函数有两种使用方式<br>（1）COUNT（*）对表中的行的数目进行计数，不管列表中包含的是空值（NULL）还是非空置<br>（2）COUNT（column） 对特定列中具有值的行进行计数，忽略NULL值  </p>
+<p>另外MIN（），MAX（），SUM（）函数忽略列值为NULL的行。</p>
+<h2 id="聚集不同的值"><a href="#聚集不同的值" class="headerlink" title="聚集不同的值"></a>聚集不同的值</h2><p>（1）对所有的行执行计算，指定ALL参数或不给参数（因为ALL是默认行为）<br>（2）只包含不同的值，指定DISTINCT</p>
+<p>ALL为默认  ALL参数不需要指定，因为它是默认行为。如果不指定DISTINCT，则假定为ALL；</p>
+<p>命令：SELECT  AVG（DISNTINCT 列名） AS 别名 FROM 表名；</p>
+<p>如果指定列名，则DISTINCT只用用于COUNT（）。DISCINCT不能用于COUNT（*）；  DISTINCT必须使用列名，不能用于计算或表达式</p>
+<h2 id="组合聚集函数"><a href="#组合聚集函数" class="headerlink" title="组合聚集函数"></a>组合聚集函数</h2><p>组合聚集函数用逗号隔开；<br>命令：SELECT COUNT（*） AS 别名，MAX（列名） AS 别名 ，MIN（列名） AS 别名  FROM  表名；</p>
+<h1 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h1><p> ##创建分组<br> 分组是在SELECT语句的GROUP BY子句中建立的<br> 命令：SELECT 列名1  COUNT（*） AS 别名  FROM  表名 GROUP BY 列名1；<br> GROUP BY  会按照  列名1 的值进行分组  ，相同的值分为一组<br> 使用GROUP BY 不必指定要计算和估值的每个分组。系统会自动完成。GROUP BY子句指示MYSQL分组数据，然后对每个分组而不是整个结果集进行聚集。</p>
+<p> 再具体使用GROUP BY子句前，需要注意的：</p>
+<pre><code>（1）GROUP BY子句可以包含任意数目的列。这使得能对分组进行嵌套，为数据分组提供更细致的控制。
+（2）如果在GROUP BY子句中嵌套了分组，数据将在最后规定的分组上进行汇总。换句话说，在建立分组时，指定的所有列都一起计算
+（3）GROUP BY子句中列出的每个列都必须是检索列或有效的表达式。如果在SELECT中使用表达式，则必须在GROUP BY子句中指定相同的表达式。
+（4）除聚集计算语句外，SELECT语句中的每个列都必须在GROUP BY子句中给出
+（5） 如果分组中给出具有NULL值，则NULL将作为一个分组返回。如果列中有多个NULL值，他们讲分为一组。
+（6）GROUP BY子句必须出现在WHERE子句之后，ORDER BY子句之前
+</code></pre><h2 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h2><p>MYSQL过滤分组不是使用WHERE，而是使用HAVING来代替。<br>HAVING非常类似于WHERE，目前为止所学过的所有类型的WHERE子句都可以用HAVING来代替。唯一的差别是WHERE是过滤行，而HAVING过滤分组。<br>命令：<br>SELECT  列名1，COUNT（<em>） AS 别名  FROM 表名 GROUP BY 列名1 HAVING COUNT（</em>）&gt;=2;        </p>
+<p>WHERE在数据分组前进行过滤，HAVING在数据分组后进行过滤，WHERE排除的行不包括在分组中。</p>
+<p>命令：SELECT 列名1，COUNT（<em>） AS 别名 FROM 表名 WHERE 列名2 &gt;= 值 GROUP BY 列名1 HAVING COUNT（</em>）&gt;=值。</p>
+<h2 id="分组和排序"><a href="#分组和排序" class="headerlink" title="分组和排序"></a>分组和排序</h2><p>GROUP BY和ORDER BY经常完成相同的工作，但他们是非常不同的。<br>ORDER BY：<br>排序产生的输出；任意列都可以使用（甚至非选择的列也可以使用）</p>
+<p>GROUP BY：<br>分组行。但输出可能不是分组的顺序；只可能使用选择列或则表达式，而且必须使用每个选择列表达式；如果与聚集函数一起使用列，则必须使用</p>
+<p>命令：SELECT 列名1，SUM（列名2<em>列名3） AS 别名 GROUP BY 列名1 HAVING SUM（列名2</em>列名3）&gt;=值 ORDER BY 别名；</p>
+<h2 id="SELECT子句顺序"><a href="#SELECT子句顺序" class="headerlink" title="SELECT子句顺序"></a>SELECT子句顺序</h2><p>在SELECT语句使用时必须遵循的次序：          </p>
+<p>######（1）SELECT    要返回的列或表达式          必须使用      </p>
+<p>######（2）FROM    从中检索数据的表      仅在从表选择数据时使用                       </p>
+<p>######（3） WHERE  行级过滤    不一定要使用                                   </p>
+<p>######（4）GROUP BY  分组说明    仅在按组计算聚集时使用                  </p>
+<p>######（5）HAVING  组级过滤     不一定要使用                    </p>
+<p>######（6）ORDER BY  输出顺序排序   不一定要使用              </p>
+<p>######（7）LIMIT  要检索的行数    不一定要使用</p>
+<p>#使用子查询<br>嵌套在其他查询语句中的查询<br>可以把一条SELECT语句返回的结果用于另一条SELECT语句的WHERE查询<br>在SELECT语句时，子查询总是从内向外处理                                   </p>
+<p>命令：SELECT  列名1，列名2 FROM 表名 WHERE 列名3 IN（SELECT 列名3 FROM 表名）；</p>
+<p>对于嵌套的子查询的数目没有限制，不过在实际使用时由于性能的限制，不能嵌套太多的子查询。</p>
+<pre><code>列必须匹配   在WHERE子句使用子查询，应该保证SELECT语句具有与WHERE子句相同数目的列。通常，子查询返货单个列并且与单个列匹配，但如果需要也可以使用多个列。
+</code></pre><h2 id="作为计算字段使用子查询"><a href="#作为计算字段使用子查询" class="headerlink" title="作为计算字段使用子查询"></a>作为计算字段使用子查询</h2><p>命令：SELECT 列名1，列名2 （SELECT COUNT（*） FROM 表名1 WHERE 表名1.列名3=表名2.列名3） AS别名  FROM 表名2 ORDER BY 字段1；</p>
+<p>相关子查询   在涉及外部查询的子查询时，任何时候只要列名可能又多义性，就不许使用语法（表名和列名由一个句点分隔）</p>
+<h1 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h1><p>######外键<br>外键为某个表的一列，它包含另一个表的主键值<br>例如：<br>命令：SELECT vend_name,prod_name,prod_price FROM vendors,products WHERE vendors.vend_id=products.vend_id ORDER BY vend_name,prod_name;</p>
+<p>vendors和products是两个表</p>
+<h2 id="WHERE子句的重要性"><a href="#WHERE子句的重要性" class="headerlink" title="WHERE子句的重要性"></a>WHERE子句的重要性</h2><p>在一条SELECT语句中联结几个表时，相应的关系是运行中构造的，在数据库表的定义中不存在能指示Mysql如何如何对表进行联结的东西，必须要自己做这件事情</p>
+<pre><code>笛卡尔积：由于没有联结条件的表关系返回的结果为笛卡尔积。检索出的行的数目将是第一个表中的行数乘以第二个表中的行数。
+</code></pre><h2 id="内部联结"><a href="#内部联结" class="headerlink" title="内部联结"></a>内部联结</h2><p>  目前为止所用的联结称为等值联结，它基于两个表之间的相等测试。这种联结也称为内部联结。</p>
+<p>命令：SELECT 列名1，列名2，列名3 FROM  表名1  INNER  JOIN  表名2  ON  表名1.列名4=表名2.列名5；<br>联结条件用特定的ON子句而不是WHERE子句给出。传递给ON的实际条件与传递给WHERE的相同。</p>
+<h3 id="联结多个表"><a href="#联结多个表" class="headerlink" title="联结多个表"></a>联结多个表</h3><pre><code>一条SELECT语句中可以联结的表的数目没有限制。创建联结的基本规则也相同。
+命令：SELECT 列名1，列名2，列名3 FROM 表1，表2，表3 WHERE 表1.列1=表2.列2 AND 表2.列1=表3.列1 AND  列名=值；
+</code></pre><h1 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h1><p>SQL允许给表名其别名的理由：<br>    （1）缩短SQL语句<br>    （2）允许在单挑SELECT语句中多次使用相同的表</p>
+<h2 id="使用不同类型的联结"><a href="#使用不同类型的联结" class="headerlink" title="使用不同类型的联结"></a>使用不同类型的联结</h2><h4 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h4><p>使用联结来查询<br>      SELECT p1.列名1，p2.列名2 FROM 表名1 AS  别名1， 表名1 AS 别名2  WHERE p1.列名=p2.列名 AND p2.列名2=值</p>
+<h4 id="自然联结"><a href="#自然联结" class="headerlink" title="自然联结"></a>自然联结</h4><p>无论何时对表进行联结，应该至少有一个列出现在不止一个表中，标准的联结返回所有数据，甚至相同的列出现多次。自然联结排除多次出现，使每个列只返回一次。</p>
+<pre><code>自然联结是这样一种联结，其中你只能选择那些唯一的列。这一般是通过对表使用通配符（SELECT *），对所有其他表的列使用明确的子集来完成的。
+</code></pre><p>SELECT c.* ,o.列名 FROM 表名1 AS c，表名2 AS o WHERE c.列名=o.列名 AND 字段=值；<br>在上面这条语句中，通配符只对第一个表使用。所有其他列明确列出，所以没有重复的列被检索出来</p>
+<h4 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h4><p>例如：<br>   SELECT customers.cust_id,orders.order_num FROM customers LEFT OUTER JOIN orders ON customers.cust_id=orders.cust_id;</p>
+<p>   键值OUTER JOIN来指定联结的类型。但是，与内部联结关联两个表中的行不同的是，外部联结还包括没有关联的行。在使用OUTER JOIN 语法时，必须使用RIGHT 或LEFT关键字指定包括其所有行的表。上面的例子使用LEFT OUTER JOIN 从FROM子句的左边表中选择所有行。为了从右边的表中选择所有行，应该使用RIGHT OUTER JOIN。</p>
+<p>####使用带聚集函数的联结</p>
+<pre><code>命令：SELECT  customers.cust_name customers.cust_id COUNT(orders.order_num) AS num_ord FROM customers INNER JOIN orders ON customers_cust_id=orders.cust_id;
+</code></pre><p>此SELECT语句使用INNER JOIN将customers和orders表互相关联。函数调用 COUNT(orders.order_num)对每个客户的订单计数，将他作为num_ord返回。</p>
+<p>#组合查询</p>
+<p>###组合查询<br>MYSQL允许执行多个查询（多条SELECT语句），并将结果作为单个查询结果集返回。这些组合查询通常称为并（union）或符合查询</p>
+<p>有两种情况需要使用组合查询<br>      （1）在单个查询中从不同的表返回类似结构的数据；<br>      （2）对单个表执行多个查询，按单个查询返回数据</p>
+<h3 id="创建组合查询"><a href="#创建组合查询" class="headerlink" title="创建组合查询"></a>创建组合查询</h3><pre><code>利用UNION操作符来组合数条SQL查询
+</code></pre><p>####使用UNION<br>UNION的使用很简单所做的只是给出每条SELECT语句，在各条语句之间方上关键字UNION</p>
+<p>UNION中的每个查询必须相同的列，表达式或聚集函数</p>
+<pre><code>UNION从查询结果中会自动出去重复的行，这是UNION的默认行为，但是如果需要，可以改变它，想要返回所有匹配的行，可使用UNION ALL
+</code></pre><p>SELECT语句的输出用ORDER BY子句排序。在用UNION组合查询是，只能使用一条ORDER BY子句，他必须出现在最后一条SELECT语句之后。</p>
+<p>#全文本搜索</p>
+<p>##使用全文本搜索</p>
+<p>###启用全文本搜索支持<br>一般在创建表时启用全文本搜索。CREATE  TABLE 语句接受FULLTEXT子句，它给出被索引列的一个逗号分隔列表：<br>示例：<br>CREATE TABLE 表名{<br>Note_id  int  NOT NULL AUTO_INCREMENT,<br>Prod_id  char(10)  NOT NULL,<br>Note_date  datetime  NOT null,<br>Noet_text  text  null,<br>PRIMARY KEY(Note_id),<br>FULLTEXT(Note_text)<br>}<br>这些列中有一个名为note_text的列，为了进行全文本搜索，MySQL根据子句FULLTEXT（note_text）的指示对它进行索引。这里的FULLTEXT索引单个列，如果需要你也可以指定多个列。</p>
+<p>在定义之后，MySQL自动维护该索引。在增加，更新或删除行时，索引随之自动更新。</p>
+<h2 id="进行全文搜索"><a href="#进行全文搜索" class="headerlink" title="进行全文搜索"></a>进行全文搜索</h2><p>在索引之后，使用两个函数Match()和Against()执行全文本搜索，其中Match()指定被搜索的列，Against()指定要使用的搜索表达式。</p>
+<p>命令：SELECT note_text FROM 表名 WHERE  Match（note_text）Against(‘rabbit’);</p>
+<p>Match(note_text)指示MySQL针对指定的列进行搜索，Against（’rabbit’）指定词rabbit作为搜索文本</p>
+<p>使用完整的Match()说明  传递给Match()的值必须与FULLTEXT（）定义中的相同，如果指定多个列，则必须列出它们（而且次序正确）。</p>
+<p>搜索不区分大小写</p>
+<p>全文搜索一个重要的部分就是对结果排序。具有较高等级的行先行返回</p>
+<p>##使用查询扩展<br>（1）    首先，进行一个基本的全文本搜索，找出与搜索条件匹配的所有行。</p>
+<p>（2）    其次，MYSQL检查这些匹配行并选择所有有用的词</p>
+<p>（3）    再其次，MYSQL再次进行全文本搜索，这次不仅使用原来的条件，而且还使用所有有用的词</p>
+<p>使用扩展查询：<br>SELECT  列名 FROM 表名 WHERE Match（列名） Against（’要搜索的文本’ WITH QUERY EXPANSION）；</p>
+<p>###布尔文本搜索</p>
+<ol>
+<li><p>要匹配的词</p>
+</li>
+<li><p>要排斥的词（如果某行包含这个词，则不返回该行，即使它包含其他指定的词也是如此）</p>
+</li>
+<li><p>排列提示（指定某些词比其他词更重要，更重要的词等级更高）；</p>
+</li>
+<li><p>表达式分组</p>
+</li>
+<li><p>另外一些内容</p>
+</li>
+</ol>
+<p>即使没有FULLTEXT索引也可以使用</p>
+<p>例如：SELECT 列名 FROM 表名 WHERE Match(列名) Against（’heavy –rope*’ IN BOOLEAN MODE）;返回包含 heavy  但排除 rope的行</p>
+<p>#插入数据<br>INSERT是用来插入行到数据库表的，插入可以你几种方式使用：<br>（1）    插入完整的行；<br>（2）    插入行的一部分<br>（3）    插入多行<br>（4）    插入某些查询的结果</p>
+<p>##插入完整的行<br>INSERT  表名（字段1，字段2，字段3）VALUES（值1，值2，值3）；<br>对每个列必须提供一个值</p>
+<p>省略列：<br>满足一下条件：<br>（1）    该列定义为允许NULl值<br>（2）    在表定义中给出默认值，这表示如果不给出值，将使用默认值</p>
+<p>插入多个行<br>命令：INSERT INTO 表名（字段1，字段2，字段3）VALUES（值1，值2，值3），（值1，值2，值3）；</p>
+<h2 id="插入检索出的数据"><a href="#插入检索出的数据" class="headerlink" title="插入检索出的数据"></a>插入检索出的数据</h2><p>INSERT INTO 表名（字段1，字段2，字段3）SELECT  字段1，字段2，字段3  FROM 表名；</p>
+<p>#更新和删除数据<br>为了更新（修改）表中的数据，可使用UPDATE语句。可采用两种方式使用UPDATE：<br>（1）    更新表中特定行；<br>（2）    更新表中所有行。<br>命令:UPDATE  表名 SET 字段1=值1，字段2=值2 WHERE 字段3=值3；</p>
+<p>IGNORE关键字  如果用UPDATE语句更新多行，并且在更新这些行中的一行或多行时出现一盒错误，整个UPDATE操作被取消（错误放生前更新的所有行被恢复到它们原来的值）。即使发生错误，也要继续更新，可使用IGNORE关键字：UPDATE  IGNORE  表名 ……</p>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><p>（1）    从表中删除特定的行<br>（2）    从表中删除所有行<br>命令：DELETE FROM 表名 WHERE 字段=值</p>
+<p>#创建和操纵表</p>
+<p>##表创建基础<br>为利用CREATE TABLE 创建表：<br>（1）    新表的名字，在关键字CREATE TABLE之后给出；<br>（2）    表列的名字和定义你，用逗号分隔。<br>实际的表定义括在圆括号之中，各列之间用逗号分隔，表的主键可以在创建表时用PRIMARY KEY（字段）关键字指定。整条语句由圆括号后的分号结束。</p>
+<p>如果你仅想在一个表不存在时创建它，应该在表名后给出IF  NOT  EXISTS。</p>
+<h2 id="使用NULL值"><a href="#使用NULL值" class="headerlink" title="使用NULL值"></a>使用NULL值</h2><p>NULL值就是没有值或缺值。允许NNU’LL值的列也允许在插入行时不给出该列的值。不允许NULL值的列不接受该列没有值的行，换句话说，在插入和更新行时该列必须有值。</p>
+<p>每个表列或者是NULL列，或则是NOT NULl列，这种状态在创建时由表的定义规定。<br>CREATE TABLE orders（<br>  Num INT  NOT NULL AUTO_INCREMENT,<br>  Date  datetime  NOT NULL,<br>  Id  int NOT NULL,<br>  PRIMARY KEY (id)<br>）<br>三个列都需要值，因此三个列都含有关键字NOT NULL<br>不指定NOT NULL时，默认是NULL值</p>
+<h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p>主键值必须唯一。表中的每个行必须具有唯一的主键值。如果主键使用单个列，则它的值必须唯一。如果使用多个列，则这些列的组合值必须唯一</p>
+<p>主键只能使用不允许NULL值的列，允许NULL值的列不能作为唯一标识</p>
+<p>###AUTO_INCREMENT<br>每当增加一行时自动增长</p>
+<p>###指定默认值<br>如果在插入时没有给出值，MySQL允许指定此时使用的默认值。默认值用CREATE TABLE语句的列定义中的GEFAULT关键字指定。<br>例：quantity  int  NOT  NULL  DEAFULT  1,</p>
+<p>##更新表<br>为更新表定义，可使用ALTER TABLE语句。但是，理想状态下，当表中存储数据以后，该表就不应该再被更新</p>
+<p>ALTER  TABLE  表名<br>ADD  字段   类型,    //添加一个列<br>DROP  COLUMN   列名，  //删除一个列</p>
+<p>ALTER TABLE的一种常见用途是定义外键</p>
+<p>ALTER  TABLE  表名<br>ADD  CONSTRAINT   fk_order_orders   FOREING  KEY (order_num)  REFERENCES  orders(prod_id);</p>
+<p>##删除表<br>DROP  TABLE  表名；</p>
+<p>####重命名表<br>RENAME  TABLE 原表名  TO  新表名</p>
+<p>#chapter 22  使用视图<br>视图是虚拟的表，与包含数据的表不一样，视图只包含使用时动态检索数据的查询</p>
+<h2 id="为什么使用视图"><a href="#为什么使用视图" class="headerlink" title="为什么使用视图"></a>为什么使用视图</h2><p>（1） 重用SQL语句<br>（2）简化复杂的SQL操作。在编写查询后，可以方便地重用它而不必知道它的基本查询细节<br>（3）使用表的组成部分而不是整个表<br>（4）保护数据。可以给用户授予表的特定部分的访问权限而不是整个表的访问权限<br>（5）更改数据格式和表示，视图可以返回与底层表的表示和格式不同的数据                </p>
+<p>性能问题：因为视图不包含数据，所以每次使用视图时都必须处理查询执行时所需的任一个检索</p>
+<h2 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h2><p>视图创建：<br>（1）视图用CREATE VIEW 语句来创建。<br>（2）使用SHOW CREATE VIEW 视图名；来查看创建视图的语句；<br>（3）使用DROP删除视图，其语法为DROP VIEW 视图名；。<br>（4）更新视图时可以先用DROP再用CREATE，也可以直接用CREATE OR REPLACE VIEW。如果要更新视图不存在，则会创建，如果存在，则会替换。        </p>
+<h2 id="利用视图简化复杂的联结"><a href="#利用视图简化复杂的联结" class="headerlink" title="利用视图简化复杂的联结"></a>利用视图简化复杂的联结</h2><p>视图最常见的应用之一是隐藏复杂的SQL，这通常会涉及联结。<br>命令：<br>CREATE VIEW 视图名 AS SELECT。。。。。。；<br>AS后面跟着的是具体的SQL语句。   </p>
+<pre><code>WHERE子句与WHERE子句   如果从视图中检索数据时使用了一条WHERE子句，则两组子句（一组在视图中，另一组是传递给视图的）将自动组合。
+
+
+一般，应该讲视图用于检索而不用于更新
+</code></pre><p>#视图与存储过程<br>存储过程<br>      存储过程可以使得对数据库的管理、以及显示关于数据库及其用户信息的工作容易得多。存储过程是   SQL   语句和可选控制流语句的预编译集合，以一个名称存储并作为一个单元处理。存储过程存储在数据库内，可由应用程序通过一个调用执行，而且允许用户声明变量、有条件执行以及其它强大的编程功能。  </p>
+<pre><code>存储过程可包含程序流、逻辑以及对数据库的查询。它们可以接受参数、输出参数、返回单个或多个结果集以返回值。
+可以出于任何使用   SQL   语句的目的来使用存储过程
+</code></pre><p>视图<br>  视图是一个虚拟表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，视图并不在数据库中以存储数据值集形式存在。行和列数据来自由定义视图的查询所引用的表，并且在引用视图时动态生成。</p>
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h2 id="执行存储过程"><a href="#执行存储过程" class="headerlink" title="执行存储过程"></a>执行存储过程</h2><p>MySQL称存储过程的执行为调用，因此MYSQL执行存储过程的语句为CALL。CALL 接受存储过程的名字以及传递给它的任意参数。</p>
+<pre><code>命令：CALL  productpricing（@pricelow，@pricehigh，@priceaverage），其中执行名为productpricing的存储过程，他计算并返回产品的最低，最高和平均价格。
+</code></pre><h2 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h2><p>命令： CREATE  PROCEDURE  存储过程名（）<br>BEGIN<br>    SELECT。。。。。（mysql语句）；<br>END；</p>
+<p>利用CREATE PROCEDURE   存储过程名（）来创建，如果存储过程有参数，它们将在（）中列举出来，此过程若没有参数，但后跟的（）仍需要。BEGIN和END语句用来限定存储过程的存储体。</p>
+<pre><code>存储过程实际上是一种函数，所以存储过程名后需要有（）符号
+</code></pre><h2 id="删除存储过程"><a href="#删除存储过程" class="headerlink" title="删除存储过程"></a>删除存储过程</h2><p>存储过程被创建以后，被保存在服务其上以供使用，直至被删除。<br>命令： DROP  PROCEDURE  存储过程名；</p>
+<p>当过程存在 想要删除时（不存在不产生错误）：DROP  PROCEDURE  IF   EXISTS。</p>
+<h2 id="使用参数"><a href="#使用参数" class="headerlink" title="使用参数"></a>使用参数</h2><p> 变量：内存中一个特定的位置，用来临时存储数据</p>
+<p> 命令： CREATE  PROCEDURE  productpricing（</p>
+<pre><code>OUT  p1  DECIMAL（8,2），                     
+OUT  ph  DECIMAL（8,2），                   
+OUT  pa  DECIMAL（8,2）                  
+</code></pre><p> ）<br> BEGIN  </p>
+<pre><code>SELECT  MIN（prod_price）                           
+INTO  p1                         
+FROM  products;                     
+SELECT  MAX（prod_price）                       
+INTO  ph                     
+FROM  products;              
+SELECT  priceaverage（prod_price）                  
+INTO  pa                       
+FROM  products;                     
+</code></pre><p>END;</p>
+<p>每个参数必须具有指定的类型，这里使用十进制。关键字OUT用来指出响应的参数用来从存储过程中传出一个值。</p>
+<p>MYSQL支持IN（传递给存储过程），OUT（从存储过程传出）和INOUT（对存储过程传入和传出）类型的参数。<br>这里用SELECT语句，用来检索，然后保存到相应的变量（通过指定INTO关键字）</p>
+<p>注意：不能一个参数返回多个行和列。这就是为甚么前面的例子要使用三个参数（3个SELECT语句）的原因。</p>
+<p>调用过程：<br>命令： CALL productpricing（@pricelow，@pricehigh，@priceaverage）;<br>由于此存储过程要求三个参数，因此必须正好传递3个参数。</p>
+<p>变量名必须都以@开头。</p>
+<p>为了显示数据则用一下命令：SELECT  @变量名；</p>
+<h2 id="建立智能存储过程"><a href="#建立智能存储过程" class="headerlink" title="建立智能存储过程"></a>建立智能存储过程</h2><p>–Name：ordertotal<br>–parameter：number=  order number<br>–           taxable= 0 if  not taxable ,1 if taxable<br>–           ototal  = order total  variable                   </p>
+<p>CREATE  PROCEDURE  ordertotal(</p>
+<pre><code>IN  onumber  INT,
+IN taxable  BOOLEAN ,
+OUT ototal DECIMAL（8,2）
+</code></pre><p>  )COMMENT ‘Obtain order total’<br>  BEGIN</p>
+<pre><code>--DECLARE variable for total
+DECLARE total DECIMAL（8,2）
+--DECLARE variable for total
+DECLARE taxrate  INT  DEFAULT  6；//声明变量
+
+SELECT 。。。。。FROM  表名 INTO total；
+
+IF  taxable  THEN  
+      SELECT。。。。。。。。。。。。；
+END IF；
+SELECT  total  INTO  otatal；
+</code></pre><p>   END</p>
+<p>   DECLEAR 声明数据</p>
+<p>  COMMENT关键字：给出次关键字，将咋啊SHOW PROCEDURE  STATUS 的结果中显示</p>
+<p>  SHOW PROCEDURE  STATUS：将列出所有存储过程<br>  SHOW PROCEDURE  STATUS  LIKE  存储过程名；列出指定的存储过程列表。</p>
+<h2 id="检查创建过程"><a href="#检查创建过程" class="headerlink" title="检查创建过程"></a>检查创建过程</h2><pre><code>SHOW  CREATE PROCEDURE  存储过程名；显示存储过程的创建语句。
+</code></pre><p>#使用游标<br>    游标是一个存储在MySQL服务器上的数据库查询，它不是一条SELECT语句，而是被该语句检索出来的结果集。在存储了游标之后，应用程序可以根据需要滚动或浏览其中的数据</p>
+<pre><code>MYSQL游标只能用于存储过程
+</code></pre><h2 id="使用游标的几个明确步骤"><a href="#使用游标的几个明确步骤" class="headerlink" title="使用游标的几个明确步骤"></a>使用游标的几个明确步骤</h2><pre><code>（1）    在能够使用游标前，必须声明它。在这个过程实际上没有检索数据，它只是定义要使用的SELECT语句。
+（2）    一旦声明后，必须打开游标以供使用。这个过程用前面定义的SELECT语句把数据实际检索出来
+（3）    对于天佑数据的游标，根据需要取出各行
+（4）    在结束游标使用时，必须关闭游标。
+在声明游标后，可根据需要频繁地打开和关闭游标。在游标打开后，可根据需要频繁地执行取操作
+</code></pre><p>###创建游标<br>    游标用DECLARE语句创建。DECLARE命名游标，并定义相应的SELECT语句，根据需要带WHERE和其他子句。</p>
+<pre><code>例如：
+CREATE PROCEDURE  processorders()
+BEGIN
+        DECLARE  ordernumbers  CURSOR
+        FOR
+        SELECT  order_num  FROM  orders;
+END;
+
+DECLARE 语句用来定义和命名游标，这里为ordernumbers。存储过程处理完成后，游标就消失了（因为它局限于存储过程）
+</code></pre><h3 id="打开和关闭游标"><a href="#打开和关闭游标" class="headerlink" title="打开和关闭游标"></a>打开和关闭游标</h3><pre><code>OPEN  ordernumbers；在处理OPEN语句时执行查询
+
+CLOSE  ordernumbers；CLOSE释放游标使用的所有内部内存和资源
+
+在一个游标关闭后，如果没有重新打开，则不能使用它。但是使用声明过的游标不需要再次声明，用OPEN语句打开它就可以了
+</code></pre><h3 id="使用游标数据"><a href="#使用游标数据" class="headerlink" title="使用游标数据"></a>使用游标数据</h3><pre><code>在一个游标打开后，可以使用FETCH语句分别访问它的每一行。
+FETCH指定检索什么数据（所需的列），检索出来的数据存储在什么地方。
+
+
+CREATE PROCEDURE  processorders()
+BEGIN
+        DECLARE o INT；//声明数据
+        //声明游标
+        DECLARE  ordernumbers  CURSOR
+        FOR
+        SELECT  order_num  FROM  orders;
+        //打开游标
+        OPEN ordernumbers；
+        //检索数据
+        FETCH  ordersnumbers  INTO  o;
+        //关闭游标
+        CLOSE  ordernumbers；
+END;
+
+FETCH用来检索当前行的游标order_num列（将自动从第一行开始）到一个名为o的局部声明的变量中。对检索出的数据不做任何处理
+
+循环：
+         REPEAT
+                要执行的SQL语句
+         UNITL  变量名  END  REPEAT；//反复执行直到  变量为真时  停止
+</code></pre><p>#使用触发器<br>    某条MySQL语句在事件发生时自动执行。这就是触发器。</p>
+<pre><code>触发器是MySQL响应以下任意语句而自动执行的一条MySQL语句（或位于BEGIN和END语句之间的一组语句）：
+（1）    DELETE
+（2）    INSERT
+（3）    UPDATE
+</code></pre><h2 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h2><pre><code>创建触发器时需要给出的4条信息：
+（1）唯一的触发器名
+（2）触发器关联表
+（3）触发器应该响应的活动（DELETE，INSERT或UPDATE）
+（4）触发器何时执行
+</code></pre><p>  注意：<br>    保持每个数据库的触发器名唯一<br>  触发器用CREATE  TRIGGER语句创建：<br>  命令：<br>  CREATE  TRIGGER   触发器名1  AFTER  INSERT  ON  表名1 FOR   EACH  ROW  SELECT ‘Product added’；<br>  CREATE TRIGGER用来创建名为  触发器1的新触发器，触发器可在一个操作发生之前或之后执行，这里给出了AFTER  INSERT，所以触发器将在INSERT语句执行后执行。而FOR EACH  ROW则表示在每个插入行执行‘Product added’</p>
+<p>  只有表才支持触发器。单一个触发器不能与多个事件相关联。</p>
+<h2 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h2><pre><code>DROP TRIGGER  触发器名；
+</code></pre><p>##使用触发器</p>
+<p>###INSERT触发器<br>      (1)在INSERT触发器代码内，可引用一个名NEW的虚拟表，访问被插入的行<br>      (2)在BEFORE  INSERT触发器中，NEW中的值可以被更新<br>      (3)对于AUTO_INCREMENT列，NEW在INSERT执行之前包含0，，在INSERT执行之后包含新的自动生成的值。</p>
+<pre><code>CREATE TRIGGER  neworder  AFTER INSERT ON orders FOR EACH ROW  SELECT  NEW.order_num;
+在插入一个新订单到orders表时，MySQL生成一个新订单号并保存到order_num.触发器从NEW.order_num取得这个值并返回它。此触发器必须按照AFTER INSERT执行，因为在BEFORE INSERT语句执行之前，新order_num还没有生成
+
+测试触发器：
+INSERT INTO orders（order_date,cust_id） VALUES(NEW(),10001);
+order_num由MySQL自动生成，而且被返回
+</code></pre><h3 id="DELETE触发器"><a href="#DELETE触发器" class="headerlink" title="DELETE触发器"></a>DELETE触发器</h3><pre><code>  （1）在DELETE触发器内，可以引用一个名为OLD的虚拟表，访问被删除的行
+  （2）OLD中的值全都是只读的，不可更新
+
+  例如：CREATE  TRIGGER  触发器名1 BEFORE DELETE ON orders
+        FOR  EACH  ROW
+        BEGIN
+             INSERT  INTO archive_orders（order_num,order_date,cust_id）
+             VALUES(OLD.order_num,OLD_order_date,OLD.cust_id);
+        END;
+使用BEGIN   END块：触发器能容纳多条SQL语句
+</code></pre><p>###UPDATE  触发器<br>      （1）在UPDATE触发器代码中，可以引用一个名为OLD的虚拟表访问以前（UPDATE更新以前）的值，引用一个名为NEW的虚拟表访问更新的值<br>      （2）在BEFORE UPDATE触发器中，NEW中的值可能也被更新。<br>      （3）OLD中的值全都是只读，不能更新</p>
+<p>#管理事务处理<br>事务处理可以用来维护数据库的完整性，它保证成批的MySQL操作要么完全执行，要么不执行</p>
+<h3 id="控制事务处理"><a href="#控制事务处理" class="headerlink" title="控制事务处理"></a>控制事务处理</h3><pre><code>管理事务处理的关键在于将SQL语句组分解为逻辑块，并明确规定数据何时应该回退。何时不应该回退。
+
+MYSQL使用下面的语句来标识事务的开始：
+START  TRANSACTION
+
+MySQL的ROLLBACK命令用来回退SQL语句：
+SELECT  * FROM 表名；
+START TRANSACTION；
+DELETE  FROM 表名；
+SELECT * FROM  表名；
+ROLLBACK；
+ROLLBACK语句回退START  TRANSACTION之后的所有语句。
+</code></pre><p>###使用COMMIT<br>      一般的MySQL语句都是直接针对数据库表执行和编写的，这就是所谓的隐含提交，即提交操作是自动进行的。<br>      但是，在事务处理块中，提交不会隐含地进行。为了进行明确的提交，使用COMMIT语句<br>      START   TRANSACTION；<br>      DELETE  FROM  表名  WHERE  字=值；<br>      DELETE  FROM  表名1 WHERE  字段1=值；<br>      COMMIT；<br>      最后的COMMIT仅在不出错时写出更改。如果取消，会被自动取消。<br>隐含事务关闭：当COMMIT或ROLLBACK语句执行后，事务会自动关闭</p>
+<p>###使用保留点<br>      简单的ROLLBACK和COMMIT语句就可以写入或撤销整个事务处理。但是，只是对简单的事务处理才能这样做，更复杂的事务处理可能需要部分提交或回退。</p>
+<pre><code>为了支持回退部分事务处理，必须能在事务处理块中合适的位置放置占位符  这些占位符称为保留点。
+
+创建占位符：
+SAVEPOINT  标识符1；
+为了回退到本例给出的保留点：
+ROLLBACK  TO  标识符；
+
+保留点在事务完成后（执行一条ROLLBACK或COMMIT）后自动释放。也可以用RELASE  SAVEPOINT明确地释放保留点。
+</code></pre><p>为了指示MySQL不自动提交更改，需要使用一下语句：<br>     SET  autocommit=0；<br>autocommit标志决定是否自动提交更改，不管有没有COMMIT语句。</p>
+<p>#安全管理</p>
+<h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><pre><code>MySQL服务器的安全基础是：用户应该对他们需要的数据具有适当的访问权，既不能多也不能少。
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/15/mysql必知必会笔记/" data-id="cjuajt99f000pfcamhb7e4sq3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-‘Netty指南" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/14/‘Netty指南/" class="article-date">
+  <time datetime="2019-01-14T07:41:18.000Z" itemprop="datePublished">2019-01-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/14/‘Netty指南/">‘Netty指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/14/‘Netty指南/" data-id="cjuajt7rj0007fcamzngr63ud" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-Socket编程" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/14/java-Socket编程/" class="article-date">
+  <time datetime="2019-01-14T01:39:03.000Z" itemprop="datePublished">2019-01-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/14/java-Socket编程/">java Socket编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java-SOcket编程"><a href="#java-SOcket编程" class="headerlink" title="java SOcket编程"></a>java SOcket编程</h1><p>java最初是作为网络编程，其对网络提供了高度的支持，使得客户端和服务器的沟通变得现实，而在网络编程中，使用最多的就是Socket</p>
+<h2 id="Socket编程"><a href="#Socket编程" class="headerlink" title="Socket编程"></a>Socket编程</h2><h3 id="一-网络基础知识"><a href="#一-网络基础知识" class="headerlink" title="一.网络基础知识"></a>一.网络基础知识</h3><p>1.两台计算机间进行通讯需要以下三个条件：<br>    ip地址，协议，端口号<br>2.TCP/IP协议：<br>是目前世界上应用最为广泛的协议，是以TCP和IP为基础的不同层次上多个协议的集合，也是TCP/IP协议簇，或TCP/IP协议栈   </p>
+<pre><code>TCP：传输控制协议   IP：互联网协议
+</code></pre><p>3.TCP/IP五层模型<br>应用层：HTTP，FTP，SMTP，Telnet等<br>传输层：TCP/IP<br>网络层：<br>数据链路层：<br>物理层：网线，双绞线，网卡等<br>4.IP地址<br>为实现网络中不用计算机之间的通信，每台计算机都必须有一个唯一的标识符—IP地址。32位二进制<br>5.端口<br>区分一台主机的多个不同应用程序，端口号范围为0-65535，其中0-1023位为系统保留。<br>如：HTTP：80 FTP：21 Telnet：23</p>
+<pre><code>IP地址+端口号组成了所谓的Socket，Socket是网络上运行的程序之间双向通信链路的终结点，是TCP和UDP的基础
+</code></pre><p>6.Socket套接字：<br>网络上具有唯一标识的IP地址和端口组合在一起才能构成唯一能识别的标识符套接字。<br>Socket原理机制：</p>
+<pre><code>通信的两端都有Socket，网络通信其实就是Socket间的通信，数据在两个Socket间通过IO传输。
+</code></pre><p>7.java中的网络支持</p>
+<pre><code>针对网络通信的不同层次，java提供了不同API，其提供的网络功能有四大类：
+InetAddress：用于标识网络上的硬件资源，主要是IP地址                   
+URL：统一资源定位符，通过URL可以直接读取或写入网络上的数据
+Sockets：使用TCP协议实现的网络通信Socket相关的类
+Datagram：使用UDP协议，将数据保存在用户数据报中，通过网络进行通信
+</code></pre><h1 id="二-InetAddress"><a href="#二-InetAddress" class="headerlink" title="二.InetAddress"></a>二.InetAddress</h1><p>InetAddress类用于标识网路坡上的硬件资源，标识互联网协议（IP）地址</p>
+<pre><code>//获取本机的InetAddress实例
+InetAddress address=InetAddress.getLocalHost();
+address.getHostName();//获取计算机名
+address.getHostAddress();//获取IP地址
+byte[] bytes=address.getAddress();//获取字节数组形式的IP地址，以点分隔的四部分
+//获取其他主机的InetAddress实例
+InetAddress address2=InetAddress.getByName(&quot;其他主机名&quot;);
+InetAddress address3=InetAddress.getByName(&quot;IP地址&quot;);
+</code></pre><h1 id="三-URL类"><a href="#三-URL类" class="headerlink" title="三.URL类"></a>三.URL类</h1><h2 id="1-URL统一资源定位符，表示Internet上某一资源的地址，协议名：资源名称"><a href="#1-URL统一资源定位符，表示Internet上某一资源的地址，协议名：资源名称" class="headerlink" title="1.URL统一资源定位符，表示Internet上某一资源的地址，协议名：资源名称"></a>1.URL统一资源定位符，表示Internet上某一资源的地址，协议名：资源名称</h2><pre><code>//创建一个URL的实例
+URL baidu=new URL(&quot;http://www.baidu.com&quot;);
+URL url=new URL(baidu,&quot;/index.html?username=tom#test&quot;)//? 表示参数，#表示锚点
+url.getProtocol();//获取协议
+url.getHost();//获取主机
+url.getPort();//如果没有指定端口号，根据协议不同使用默认端口号。此时getPort()方法的返回值为-1
+url.getPath();//获取文件路径
+url.getFile();//文件名，包括文件路径+参数
+url.getRef();//相对路径，就是锚点，即#号后面的内容
+url.getQuery();//查询字符串，即参数
+</code></pre><h2 id="2-使用URL读取网页内容"><a href="#2-使用URL读取网页内容" class="headerlink" title="2.使用URL读取网页内容"></a>2.使用URL读取网页内容</h2><p>通过URL对象的openStream()方法可以得到指定资源的输入流，通过流能够读取或则访问网页上的资源</p>
+<pre><code>URL url=new URL(&quot;http：//www.baidu.com&quot;);
+InputStream is=url.openStream();//通过openStream方法获取资源的字节输入流
+InputStreamReader isr=new InputStreamReader(is,&quot;UTF-8&quot;);//将字节输入流转换为字符输入流，如果不指定编码，中文可能会出现乱码
+BufferReader br=new BufferedReader(isr);//为字符输入流添加缓冲，提高读取效率
+String data=br.readLine();//读取数据
+while(data!=null){
+    System.out.println(data);
+    data=br.readerLine();
+}
+br.close();
+isr.close();
+is.close();
+</code></pre><h1 id="四-TCP编程"><a href="#四-TCP编程" class="headerlink" title="四.TCP编程"></a>四.TCP编程</h1><p>1.TCP协议是面向连接的，可靠地，有序的，以字节流的方式发送数据，通过三次握手方式建立连接，形成传输数据的通道，在连接中进行大量的数据的传输，效率会稍低<br>2.Java中基于TCP协议实现网络通信的类：（1）客户端的Socket类（2）服务器端的ServerSocket类<br>！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/socket%E9%80%9A%E4%BF%A1.png" target="_blank" rel="noopener">Image text</a><br>3.Socket通信的步骤<br>（1）创建ServerSocket和Socket（2）打开连接到Socket的输入与输出流<br>（3）按照协议对Socket进行读/写操作（4）关闭输入输出流，关闭Socket<br>4.服务器端：<br>（1）创建ServerSocket对象。绑定监听端口（2）通过accept()方法监听客户端请求<br>（3）连接建立后，通过输入流读取客户端发送的请求消息（4）通过输出流向客户端发送相应消息（5）关闭相关资源</p>
+<pre><code>//基于TCP协议的Socket通信，实现用户登录，服务端
+//创建一个服务器端Socket，即ServerSocket，指定绑定的端口，并监听此端口
+ServerSocket serverSocket= newServerSocket(10086);
+//调用accept方法开始监听，等待客户端的连接
+Socket socket=serverSocket.accept();
+//获取输入流，并读取客户端信息
+InputStream is=socket.getInputStream();
+InputStreamReader isr=new InputStreamReader(is);
+BufferedReader br=new BufferedReader(isr);
+String info=null;
+while((info=br.readLine())!=null){
+    System.out.println(&quot;我是服务器，客户端说：&quot;+info)；
+}
+socket.shutdownInput();//关闭输入输出流
+//4.获取输出流，相应客户端的请求
+OutputStream os= socket.getOutputStream();
+PrintWriter pw=new PrintWriter(os);
+pw.write(&quot;欢迎你！&quot;);
+pw.flush();
+//5.关闭资源
+pw.close();
+os.close();
+br.close();
+isr.close();
+is.close();
+socket.close();
+serverSocket.close();
+</code></pre><p>5.客户端<br>（1）创建Socket对象，指明需要连接的服务器地址和端口号（2）连接建立后，通过输出流向服务器发送请求信息（3）通过输入流获取服务器相应的信息（4）关闭相应资源</p>
+<pre><code>//客户端
+//创建客户端Socket，指定服务器地址和端口
+Socket socket =new Socket(&quot;localHost&quot;,10086);
+//获取输出流，向服务器发送消息
+OutputStream  os=new OutputStream();//字节流输出
+PrintWriter pw=new PrintWriter(os);//将输出流包装成打印流。
+pw.writer(&quot;用户名：admin，密码：123&quot;);
+pw.flush();
+socket.shutdownOutput();
+//获取输入流，并读取服务器短的响应信息
+InputStream in=socket.getInputStream();
+BufferedReader br=new BufferedReader(new InputStreamReader(is));
+String info=null;
+while((info=br.readLine())!=null){
+  System.out.println(&quot;我是客户端，服务器说：&quot;+info);
+}
+br.close();
+is.close();
+pw.close();
+os.close();
+socket.close();
+</code></pre><p>6.应用多线程实现服务器与客户端之间的通信<br>（1）服务器端创建ServerSocket，循环调用accept()等待客户端连接（2）客户端创建一个socket并请求和服务器端连接（3）服务器接受客户端请求，创建socket与该客户端建立专线连接（4）建立连接的两个socket在一个单独的线程上对话（5）服务器端继续等待新的连接</p>
+<pre><code>//服务器线程处理
+//和本线程相关的socket
+Socket socket=null;
+public serverThread(Socket socket){
+  this.socket=socket;
+}
+public void run(){
+  //服务器处理代码
+}
+//服务器代码
+ServerSocket serverSocket=new ServerSocket(10086);
+Socket socket=null;
+int count=0;//记录客户端的数量
+while(true){
+  socket=serverSocket.accept();
+  ServerSocket serverThread=new ServerThread(socket);
+  serverThread..start();
+  count++;
+  System,out,println(&quot;客户端连接数量：&quot;+count);
+}
+</code></pre><p>五.UDP编程<br>UDP协议（用户数据报协议）是无连接的，不可靠的，无序的，速度快<br>进行数据传输时，首先将要传输的数据定义成数据报，大小限制在64k，在数据报中指明数据所要达到的Socket（主机地址和端口号），然后再将数据报发送出去。<br>DatagramPacket类：表示数据包<br>DatagramSocket类：进行端到端通信的类<br>1.服务器端实现步骤：<br>（1）创建DatagreamSocket,指定端口号（2）创建DatagramPacket（3）接受客户端发送的数据信息<br>（4）读取数据</p>
+<pre><code>//服务器端，实现基于UDP的用户登录
+//创建服务器端的DatagramSocket,指定端口号
+DatagrameSocket socket=new DatagrameSocket(10010);
+//创建数据报，用于接受客户端发送的数据报
+byte[] data=new byte[1024];
+DatagramePacket packet=new DatagramePacket(dtat,data.length);
+//接受客户端发送的数据
+socket.receive(packet);//此方法在接受数据报之前会一直阻塞
+String info=new String(data,0,data.length);
+System.out.println(&quot;我是服务器，客户端告诉我&quot;+info);
+
+//向客户端响应数据
+//1.定义客户端的地址，端口号，数据
+InetAddress address=packet.getAddress();
+int port=packet.getPort();
+byte[] data2=&quot;欢迎您&quot;.getBytes();
+//创建数据报，包含响应的数据信息
+DatagramPacket packet2=new DatagramPacket(data2,data2.length,address,port);
+//响应客户端
+socket.send(packet2);
+//关闭资源
+socket.close();
+</code></pre><p>2.客户端实现步骤<br>    (1)定义发送信息（2）创建DatagramPacket,包含将要发送的信息<br>    （3）创建DatagramSocket（4）发送数据</p>
+<pre><code>//客户端
+//可以服务器的地址，端口号，数据
+InetAddress address=InetAddress.getByName(&quot;localhost&quot;);
+int port=10010;
+byte[] data==&quot;用户名：admin；密码：123&quot;.getBytes();
+//创建数据报，包含发送的数据信息
+DatagramPacket packet=new DatagramPacket(data,data.length,address,port);
+//创建DatagramSocket 对象
+DatagramSocket socket=new DatagramSocket();
+//4向服务器发送数据
+socket.send(packet);
+
+//接受服务器端响应的数据报
+//创建数据报，用于接受服务器端响应的数据
+byte[] data2=new byte[1024];
+DatagramPacket  packet2=new DatagramePacket(data2,data2.length);
+//接受服务器相应的数据
+socket.receive(packet2);
+String raply=new String(data2,0,packet.getLength());
+Systen.out.println(&quot;我是客户端，服务器说：&quot;+raply);
+socket.close();
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/14/java-Socket编程/" data-id="cjuajt8420008fcamqrvwufzg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-计算机网络" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/07/计算机网络/" class="article-date">
+  <time datetime="2019-01-07T13:17:17.000Z" itemprop="datePublished">2019-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/07/计算机网络/">计算机网络</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-计算机网络分为哪几层"><a href="#1-计算机网络分为哪几层" class="headerlink" title="1.计算机网络分为哪几层"></a>1.计算机网络分为哪几层</h1><h2 id="OSI模型有7层，如果是TCP-IP协议簇，则有4层："><a href="#OSI模型有7层，如果是TCP-IP协议簇，则有4层：" class="headerlink" title="OSI模型有7层，如果是TCP/IP协议簇，则有4层："></a>OSI模型有7层，如果是TCP/IP协议簇，则有4层：</h2><p>OSI模型中从下往上依次是：物理层，数据链路层，网络层，传输层，会话层，表示层，应用层。 TCP/IP协议簇从下往上依次是：网络接口层，网际层IP，运输层（TCP或UDP），应用层。 这里简要介绍一下各层的主要作用：</p>
+<h3 id="（1）应用层"><a href="#（1）应用层" class="headerlink" title="（1）应用层"></a>（1）应用层</h3><p>应用层是体系结构中的最高层，应用层直接为用户的应用进程提供服务。这里的进程就是指正在运行的程序。在因特网中应用层协议很多，如支持万维网的HTTP协议，支持电子邮件的SMTP协议，支持文件传送的FTP协议等等</p>
+<h3 id="（2）运输层"><a href="#（2）运输层" class="headerlink" title="（2）运输层"></a>（2）运输层</h3><p>运输层的任务就是负责向两个主机中进程之间的通信提供服务。由于一个主机可同时运行多个进程，因此运输层有复用和分用的功能。复用就是多个应用层进程同时可同时使用下面运输层的服务，分用则是运输层把收到的信息分别交付给上面应用层中相应的进程。 运输层主要使用一下两种协议：</p>
+<h4 id="1-传输控制协议—面向连接的，数据传输的单位是报文段，能够提供可靠的交付"><a href="#1-传输控制协议—面向连接的，数据传输的单位是报文段，能够提供可靠的交付" class="headerlink" title="1.传输控制协议—面向连接的，数据传输的单位是报文段，能够提供可靠的交付"></a>1.传输控制协议—面向连接的，数据传输的单位是报文段，能够提供可靠的交付</h4><h4 id="2-用户数据包协议UDP—无连接的，数据传输的单位使用户数据报，不保证可靠地交付，只能提供”尽最大努力交付”。"><a href="#2-用户数据包协议UDP—无连接的，数据传输的单位使用户数据报，不保证可靠地交付，只能提供”尽最大努力交付”。" class="headerlink" title="2.用户数据包协议UDP—无连接的，数据传输的单位使用户数据报，不保证可靠地交付，只能提供”尽最大努力交付”。"></a>2.用户数据包协议UDP—无连接的，数据传输的单位使用户数据报，不保证可靠地交付，只能提供”尽最大努力交付”。</h4><h3 id="3-网络层"><a href="#3-网络层" class="headerlink" title="(3) 网络层"></a>(3) 网络层</h3><p>网络层负责为分组交换网上的不同主机提供通信服务。在发送数据时，网络层把运输层产生的报文段或则用户数据报封装成分组或包进行传送。在TCP/IPti体系中，由于网络层使用IP协议，因此分组也叫作IP数据报，或简称为数据报。</p>
+<p>网络层的另一个任务就是要选择合适的路由，使源主机运输层所传下来的分组，能够通过网络层的路由器找到目的主机。</p>
+<p>网络层主要的协议是无连接的网际IP协议和许多路由选择协议。</p>
+<h3 id="（4）数据链路层"><a href="#（4）数据链路层" class="headerlink" title="（4）数据链路层"></a>（4）数据链路层</h3><p>我们知道两个主机之间的数据传输，总是在一段一段的链路上传输的，也就是说，在两个相邻节点之间传送数据是直接传送的。这时就需要使用专门的链路层的协议。在两个相邻的节点之间船速数据时，数据链路层将网络层交下来的IP数据报组装成帧，在两个相邻的节点之间的链路上”透明”地传送帧中的数据。每一帧包括数据和必要的控制信息。</p>
+<h3 id="（5）物理层"><a href="#（5）物理层" class="headerlink" title="（5）物理层"></a>（5）物理层</h3><p>在物理层上所传数据的单位是比特。物理层的任务就是透明地传送比特流</p>
+<h1 id="2-TCP和UDP有什么区别，各自的使用场景以及那些应用层协议使用使用了TCP与UDP"><a href="#2-TCP和UDP有什么区别，各自的使用场景以及那些应用层协议使用使用了TCP与UDP" class="headerlink" title="2.TCP和UDP有什么区别，各自的使用场景以及那些应用层协议使用使用了TCP与UDP"></a>2.TCP和UDP有什么区别，各自的使用场景以及那些应用层协议使用使用了TCP与UDP</h1><h2 id="TCP与UDP的区别："><a href="#TCP与UDP的区别：" class="headerlink" title="TCP与UDP的区别："></a>TCP与UDP的区别：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">01.TCP是面向连接的传输控制协议，而UDP提供了无连接的数据报服务</span><br><span class="line">02.TCP具有高可靠性，确保传输数据的正确性，不出现丢失或乱序；UDP在数据传输前不建立连接，不对数据报进行检查与修改，无须等待对方的应答，所以会出现分组丢失，重复，乱序，应用程序需要负责传输可靠性方面的工作</span><br><span class="line">03.UDP具有较好的实时性，工作效率较TCP协议高</span><br><span class="line">04.UDP结构段比TCP的结构段简单，因此网路开销也小</span><br></pre></td></tr></table></figure>
+<h2 id="各自的使用场景"><a href="#各自的使用场景" class="headerlink" title="各自的使用场景"></a>各自的使用场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP：对效率要求相对低，但对准确性要求相对高；或则是要求有连接的场景</span><br><span class="line">UDP：对效率要求相对较高，对准确性要求相对低的场景</span><br></pre></td></tr></table></figure>
+<h2 id="TCP与UDP的应用（应用层协议）"><a href="#TCP与UDP的应用（应用层协议）" class="headerlink" title="TCP与UDP的应用（应用层协议）"></a>TCP与UDP的应用（应用层协议）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP：电子邮件（SMTP），远程终端接入（TELNET），万维网（HTTP），文件传送（FTP）</span><br><span class="line">UDP：名字转换（DNS），文件传送（TFTP）路由选择协议（RIP），IP地址配置（BOOTP，DHCP），网络管理（SNMP），远程文件服务器（NFS），IP（专用协议），流式多媒体电话（专用协议），多播（IGMP）</span><br></pre></td></tr></table></figure>
+<h2 id="TCP与UDP的优缺点："><a href="#TCP与UDP的优缺点：" class="headerlink" title="TCP与UDP的优缺点："></a>TCP与UDP的优缺点：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.TCP</span><br><span class="line">  优点：可靠，稳定。</span><br><span class="line">      TCP的可靠性体现在传输数据前，三次握手建立连接（四次挥手断开连接），并在数据传递时，有确认，窗口，重传，拥塞控制机制，数据传完之后断开连接来节省系统资源。</span><br><span class="line">  缺点：慢，效率比较低，占用系统资源，容易被攻击。 在传输数据之前建立连接，这样会消耗时间，而且在消息传递时，确认机制，重传机制和拥塞机制都会消耗大量的时间，而且在每台设备上维护所有的传输连接。而且没一个连接都会占用系统的CPU，内存等软硬件资源。而且TCP的连接机制，三次握手机制导致TCP容易被人利用，实现DOS，DDOS攻击。</span><br><span class="line">2.UDP</span><br><span class="line">  优点：快，比TCP安全</span><br><span class="line">      UDP没有TCP的握手，确认窗口，重传，拥塞机制。UDP是一个无状态的传输机制，所以在传输数据时非常快。UDP没有TCP这些机制，相应被利用的漏洞就少一点。但是UDP的攻击也是存在的，比如UDP的flood攻击</span><br><span class="line">  缺点：不可靠，不稳定</span><br><span class="line">      因为UDP没有TCP的那些可靠机制，在网络质量不好的时候容易发生丢包</span><br></pre></td></tr></table></figure>
+<h1 id="3-滑动窗口协议"><a href="#3-滑动窗口协议" class="headerlink" title="3.滑动窗口协议"></a>3.滑动窗口协议</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里我们假定数据只在一个方向上进行，即A发送数据，B给出确认。这样讨论好处是限于两个窗口，即A的发送窗口和接收方B的接受窗口，这样使问题简化。</span><br></pre></td></tr></table></figure>
+<p>TCP的滑动窗口是以字节为单位的如下图我们假定A收到了B发来的确认报文段，其中窗口是20（字节），而确认号是31（这表明B期望收到的下一个序号是31，而序号30为止的数据已经收到了），根据这两个数据，A就构造出自己的发送窗口如下图： <img src="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/滑动窗口1.png" alt="Image text"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我們先讨论发送方A的发送窗口。发送窗口表示：在没有收到B的确认的情况下，A可以连续把窗口内的数据都发送出去，凡是已经发送过去的数据，在未收到之前的确认之前必须暂时保留，以便在超时重传时使用。</span><br></pre></td></tr></table></figure>
+<p>发送窗口里面的序号表示允许发送的序号。窗口越大，发送方基于可以在收到对方确认之前连续发送更多的数据，因而可能获得更高的传输效率。但接受方必须来得及处理这些数据</p>
+<p>发送窗口后沿的后面部分表示已发送且已经收到确认。这些数据不需要保留，。而发送窗口前沿前面的部分不允许发送，因为接收方都没有为这部分数据保留临时存放的缓存空间。 发送窗口后沿的变化有两种情况：1.不动 2.前移 发送窗口的前沿也有两种情况：前移和不动。不动对应于两种情况：一是没有收到新的确认，对方通知窗口的大小也不变，二是收到了新的确认但对方通知的窗口缩小了，使得发送窗口前沿正好不动。（发送窗口的前沿有可能因为通知窗口减小太多而后移）；</p>
+<p>现在假定A发送了序号为31-41的数据。这时，发送窗口的位置并未改变，但发送窗口内靠后面得11个字节表示已发送但但未收到确认。而发送窗口内靠前面得9个字节是允许发送单还未发送的。如下图： ！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A32.png" target="_blank" rel="noopener">image text</a></p>
+<p>从以上所述可以看出，要描述一个发送窗口的状态需要三个指针：P1，P2，P3. 小于P1的是已发送并已收到确认的部分，而大于P3的是不允许发送的部分<br><br>P3-P1=A的发送窗口<br><br>P2-P1=已发送但尚未收到确认的字节数<br><br>P3-P2=允许发送但尚未发送的字节数</p>
+<p>再看一下B的接受窗口。B的接受窗口的大小是20.在接受窗口外面，到30号为止的数据是已经发送过确认，并且已经交付给主机。因此在B可以不再保留这些数据。接受窗口内的序号（31-50）是允许接收的。在上图中，B收到了序号为32和33的数据。这些数据没有按序到达，因为序号为31的数据没有收到（也许丢失了，也许滞留在网络中的某处）。此时B只能对按序收到的数据中的最高序号给出确认，因此B发送的确认报文段中的确认号仍然是31，而不是32或33.<br><br>现在假定B收到了序号为31 的数据，并把序号为31—-33的数据交付给主机，然后B删除这些数据。接着把接受窗口向前移动3个序号（如下图）同时给A发送确认，其中窗口值扔为20，但确认号是34.这则表明B已经shoudao序号33为止的数据，B还收到了序号为37,38和40的数据，但这些都没有按序到达，只能先暂存在接受窗口中，A收到确认后，就可以把发送窗口向前活动三个序号，但指针P2不动，可以看出，现在A的发送窗口增大了，可发送的序号范围是42-53.<br><br>A在继续发送完序号42-53的数据后，指针P2向前移动和P3重合，但是发送窗口内的序号都已经用完，但还没有再收到确认，由于A的发送窗口已满，可用窗口与已减小到零，因此必须停止发送。请注意，存在下面这种可能性，就是发送窗口内所有的数据都已经正确到达B，B也早已发出了确认。但不幸的是，所有这些确认都滞留在网络中。在没有收到B的确认时，A不能猜测：B是否收到。为了保证可靠传输，A只能认为B还没有收到这些数据。于是，A在经过一段时间后（超时重传）就重传这部分数据，重新设置超时计时器，直到收到B的确认为止。如果A收到的确认号落在发送窗口内，nameA就可以使发送窗口继续向前滑动，并发送新的数据。 ！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A33.png" target="_blank" rel="noopener">image text</a></p>
+<p>前面我们曾给出那这样的概念：发送方的应用程序把字节流写入TCP的发送缓存，接收方的应用进程从TCP的接收缓存在读取字节流。下面我们就进一步讨论前面讲的窗口和缓存的关系。如下图画出了发送发维持的发送缓存和发送窗口，以及接收方维持的接收缓存和接收窗口。这里首先要明确两点。第一，缓存空间和序号都是有限的，并且是循环使用的。第二，由于实际缓存或窗口中的字节数是非常之大的，因此无法再图中把一个个字节的位置标注清楚。这样，图中的一些指针也无法准确画成指向某一字节的位置。</p>
+<p>发送缓存用来暂时存放： （1）发送应用程序传送给发送方TCP准备发送的数据 （2）TCP已发出但尚未收到确认的数据 发送窗口有通常只是发送缓存的一部分。已被确认的数据应当从缓存中删除，因此发送缓存和发送窗口的后沿是重合的。发送应用程序最后写入发送缓存的字节减去最后被确认的字节，就是还保留在发送缓存中的被写入的字节数。发送应用程序必须控制写入缓存的速率，不能太快，否则发送你缓存就会没有存放数据的空间。 ！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A34.png" target="_blank" rel="noopener">image text</a></p>
+<p>接受缓存用来暂时存放：<br><br>1.按序到达的，但尚未被应用程序读取的数据<br><br>2.位按序到达的数据<br><br>如果收到的分组检测出现差错，则要丢弃。如果接受应用程序来不及读取收到的数据，则接收缓存最终会被填满，使接收窗口减小到零。反之，如果接受应用程序能够及时从接受缓存中读取收到的数据，接受窗口就可以增大，但最大不能操作接受缓存的大小。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">根据以上所讨论的，我们还要再强调一下三点。</span><br><span class="line">第一，虽然A的发送窗口是根据B的接受窗口设置的，但在同一时刻，A的发送窗口与并不总是和B的接受窗口一样大。这是因为通过网络传送窗口值需要经历一定的时间滞后（这个时间是不确定的）。另外，发送方还可能根据网络当时的拥塞情况适当减小自己的发送窗口数值。</span><br><span class="line">第二，对于不按序到达的数据应如何处理，TCP标准并无明确的规定。如果接受方把不按序到达的数据一律丢弃，那么接受窗口的管轮将会比较简单，但是这样做对网络资源的利用率不利。TCP通常对不按序到达的数据显示临时存放在接受窗口，等到字节流中所缺少的字节收到后，在按序交付给上层的应用程序。</span><br><span class="line">第三. TCP 要求接受方必须有所积累确认的功能，这样可以减小传输开销，接受方可以在合适的时候发送确认，也可以在自己有数据要发送时把确认信息顺便捎带上。但请注意两点。第一，接收方不应过分推迟发送确认，否则会导致发送方不必要的重传，这反而浪费了网络的资源。TCP标准规定，确认推迟时间不应超过0.5秒。若收到一连串具有最大长度的报文段，则必须每个一个报文段就要发送一个确认。第二，捎带确认实际上并不经常发生，因为大多说应用程序不同时在两个方向上发送数据。</span><br></pre></td></tr></table></figure>
+<h2 id="超时重传"><a href="#超时重传" class="headerlink" title="超时重传"></a>超时重传</h2><p>运输层维护一个超时计时器，当发送了一个数据后超时重传计时器就开始计时，当计时器达到某个值之后仍然没有收到确认，则会触发重传。 超时计时器的重传时间设置多大事很复杂的。<br><br>TCP采用一种自适应算法，它记录一个报文的发出时间以及收到相应确认的时间，这两个时间的时间差就是报文的往返时间RTT，TCP保留一个RTT的加权平均间RTTs 新的RTTs=（1-a）<em>(旧的RTTs)+a</em>（新的RTT样本）</p>
+<p>超时计时器设置的超时重传时间RTO应略大于上面的加权平均往返时间RTTs</p>
+<h1 id="拥塞避免"><a href="#拥塞避免" class="headerlink" title="拥塞避免"></a>拥塞避免</h1><p>在计算机网络中的链路容量，交换节点中的缓存和处理机等，都是网络的资源，在某段时间，弱队网络中某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变坏。这种情况就叫做拥塞。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">拥塞控制与流量控制的关系密切，他们之间也存在一些差别。</span><br><span class="line">所谓的拥塞控制就是防止过多的数据注入到网络中，这样可以使网络中的路由器或则链路不致过载。拥塞控制索要做的都有一个前提，就</span><br></pre></td></tr></table></figure>
+<p>是网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机，所有的路由器，以及与降低网络传输性能有关的所有因素。但是TCP连接的端点只要迟迟不能收到对方的确认信 息，就猜想在当前网络中的某处可能发生了拥塞，但这时却无法知道拥塞到底发生在网络的何处， 也无法知道发生阻塞的具体原因。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">相反流量控制往往指点对点通信量的控制，是个端到端的问题。流量控制所有做的就是抑制发送端的</span><br><span class="line">发送速率，以便接收端来得及接收。</span><br></pre></td></tr></table></figure>
+<h2 id="几种拥塞控制的方法"><a href="#几种拥塞控制的方法" class="headerlink" title="几种拥塞控制的方法"></a>几种拥塞控制的方法</h2><h3 id="（1）慢开始和拥塞避免"><a href="#（1）慢开始和拥塞避免" class="headerlink" title="（1）慢开始和拥塞避免"></a>（1）慢开始和拥塞避免</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">发送方维持一个叫做拥塞窗口的状态变量。拥塞窗口的大小取决于网络的拥塞程度，并且动态地在</span><br><span class="line">变化。发送方让自己的发送窗口等于拥塞窗口，如果再考虑接收方的接受能力，发送窗口还可能小</span><br><span class="line">于拥塞窗口。</span><br><span class="line">发送方拥塞控制的原则：只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组。（只要发送方没有按时收到应当到达的确认报文，就可以猜想网络出现了拥塞）</span><br><span class="line"></span><br><span class="line">慢开始算法的思路：当主机开始发送数据时，如果立即把大量的数据字节注入到网络中，name就有可能引起网络拥塞，因为仙子阿并不清楚网络的负荷情况。经验证明，较好的方法是先探测一下，即由小达到逐渐增大发送窗口，也就是说有效达到逐渐增大拥塞窗口的数值。通常在刚开始发送报文段时，先把拥塞窗口cwnd设置为一个最大报文段MSS的数值。而在每收到一个对新的报文段的确认后，把拥塞窗口增加至多一个MSS的数值。用这样的方法逐步增大发送方的拥塞窗口cwnd，可以使分组注入到网络的速率更加合理。（这样每经过一个传输轮次，拥塞窗口cwnd就加倍）</span><br><span class="line"></span><br><span class="line">还要指出，慢开始的“慢”并不是指cwnd的增长速率慢。而是指在TCP开始发送报文段时先设置cwnd</span><br><span class="line">=1,使得发送方在开始时只发送一个报文段，然后再逐渐增大cwnd。这当然比按照大的cwnd一下子把许多报文段突然注入到网络中药“慢得多”。</span><br><span class="line"></span><br><span class="line">为了防止拥塞窗口cwnd增长过大引起网络拥塞，还需要设置一个慢开始门限ssthresh状态变量。</span><br><span class="line">当cwnd&lt;ssthresh时 使用上述的慢开始算法。</span><br><span class="line">当cwnd&gt;ssthresh，停止使用慢开始算法而改用拥塞避免算法。</span><br><span class="line">当cwnd=ssthresh时，即可以使用慢开始算法，也可以使用拥塞避免算法。</span><br></pre></td></tr></table></figure>
+<h4 id="拥塞避免算法"><a href="#拥塞避免算法" class="headerlink" title="拥塞避免算法"></a>拥塞避免算法</h4><p>算法思路让拥塞窗口cwnd缓慢地增大，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1，而不是加倍。这样，拥塞窗口cwnd按线性规律缓慢增长，比慢开始算法的拥塞窗口增长速率缓慢的多</p>
+<p>无论在慢开始阶段还是拥塞避免阶段，只要发送方判断网络出现拥塞（其根据就是有没有按时收到确认），就把慢开始门限ssthresh设置为出现拥塞时发送窗口的一半，然后把拥塞窗口重新设置为1，执行慢开始算法。这样做的目的就是要迅速减小主机发送到网络中的分组，使得发生拥塞的路由器有足够的时间把队列中积压的分组处理完毕。</p>
+<p>“拥塞避免”并非完全能够避免拥塞，是说在拥塞避免阶段将拥塞窗口控制为按线性规律增长，使网络比较不容易出现拥塞。</p>
+<h3 id="（2）快重传和快恢复"><a href="#（2）快重传和快恢复" class="headerlink" title="（2）快重传和快恢复"></a>（2）快重传和快恢复</h3><p>提出这两个算法是基于如下的考虑：<br><br>如果发送方设置的超时计时器时限已到但还没有收到确认，那么很可能是网络出现了拥塞，致使报文在网络中的某处被丢弃。这种情况下，TCP马上把拥塞窗口cwnd减小到1，并执行慢开始算法，同时把慢开始门限值ssthresh减半。这是不使用重传的情况。<br><br>下面再看看重传的情况</p>
+<p>快输重传算法首先要求接收方每收到一个失序的报文段后就立即发出重复确认（为的是使发送方尽早知道有报文没有到达对方）而不要等待自己发送数据时才进行捎带确认，如下图。接收方收到了M1和M2后都分别发送了确认，现在假定接收方没有收到M3但接着收到了M4。显然接收方不能确认M4，因为m4是收到的失序报文段。根据可靠传输的原理，接收方可以什么都不做，也可以在适当时机发送一次对M2的确认。但是按照快速重传算法的规定，接收方应及时发送对M2的重复确认，这样可以让发送方尽早知道报文段M3没有到达接收方。发送方接着发送M5和M6。接收方收到了也还要再次发出对M2的重复确认。这样，发送方共收到了4次对M2的重复确认，其中后三个都是重复确认。快速重传算法规定，发送方只要一连收到三重复个确认就应当立即重传对方尚未收到的报文段M3，而不必继续等待为M3设置的超时计时器到期。由于发送方尽早重传未被确认的报文段，因此采用快重传后可以使整个网络的吞吐量提高约20%。 ！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E5%BF%AB%E9%87%8D%E4%BC%A0.png" target="_blank" rel="noopener">image text</a></p>
+<p>与快重传配合使用的还有快恢复算法，其过程有以下两个特点： （1）当发送方连续收到三个重复确认时，就执行”乘法减小”算法，把慢开始门限ssthresh减半。这是为了预防网络发生拥塞。请注意，接下去不执行慢开始算法。<br><br>（2）由于发送方现在认为网络很可能没有发生拥塞（如果网络发生了严重的拥塞，就不会一连有好几个报文段连续到达接收方，就不会导致发送方连续发丝用重复确认），因此与慢开始不同之处是现在不执行慢开始算法（即拥塞窗口cwnd现在不设为1）而是把cwnd值设置为慢开始门限ssthresh减半后的数值，然后开始执行拥塞避免算法（”加法增大”），使拥塞窗口缓慢线性增大。 下图给出了快重传和快恢复的示意图： ！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E5%BF%AB%E6%81%A2%E5%A4%8D.png" target="_blank" rel="noopener">image text</a> 请注意也有的快重传实现是把拥塞窗口再增大一下（3个报文段长度），即等于ssthresh+3*MSS。这样做的理由是：既然发送方收到三个重复的确认，就表明有三个分组已经离开了网络。这三个分组不在消耗网络的资源而是停留在接收方的缓存中（接收方发出三个重复确认就证明了这个事实），可见现在网络中并不是堆积了分组而是减小了三个分组。因此可以适当把拥塞窗口增大些。</p>
+<h1 id="TCP运输连接管理"><a href="#TCP运输连接管理" class="headerlink" title="TCP运输连接管理"></a>TCP运输连接管理</h1><h2 id="TCP连接的建立"><a href="#TCP连接的建立" class="headerlink" title="TCP连接的建立"></a>TCP连接的建立</h2><p>下图画出了TCP建立连接的过程。假定主机A运行的是TCP客户程序，而B运行TCP服务器程序。最初两端的TCP进程都处于CLOSED（关闭）状态，图中主机下面的方框分别是TCP进程所处的状态。请注意，A主动打开连接，而B被动打开连接。</p>
+<p>！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" target="_blank" rel="noopener">image text</a></p>
+<p>B的TCP服务进程先创建传输控制块TCB，准备接受客户进程的连接请求。然后服务器进程就处于LISTEN（收听）状态，等待客户的连接请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A的TCP客户进程也是首先创建传输控制块TCB，然后向B发送连接请求报文段，这时首部中的同部位SYN=1，同时选择一个初始序列号seq=x。TCP规定，SYN报文段（SYN=1的报文段）不能携带任何数据，但要消耗一个序号。这时TCP客户进程进入SYN-SENT（同步已发送）状态。</span><br><span class="line"></span><br><span class="line">B收到连接请求的报文段后，如同意建立连接，则向A发送确认。在确认报文段中应把SYN位和ACK位都置位1，确认号是ack=x+1，同时也为自己选择一个初始序列号seq=y。请注意这个报文段也不能携带数据，但同样要消耗掉一个序号，这时TCP服务器进程进入SYN-RCVD（同步收到）状态。</span><br><span class="line"></span><br><span class="line">TCP客户进程收到B的确认后，还要向B给出确认。确认报文段的ACK置1，确认号ack=y+1，而自己的序号seq=x+1。TCP规定，ACK报文段可以可以携带数据。但是如果不携带数据则不消耗序号，这种情况下，下一个数据报文段的序号仍是seq=x+1。这时TCP连接已经建立，A进入已建立状态。B收到A的确认后，也进入已建立状态。</span><br><span class="line"></span><br><span class="line">上面给出的连接建立过程就叫做三次握手，或三次联络。</span><br></pre></td></tr></table></figure>
+<h3 id="为什么A还要发送一次确认呢？"><a href="#为什么A还要发送一次确认呢？" class="headerlink" title="为什么A还要发送一次确认呢？"></a>为什么A还要发送一次确认呢？</h3><p>这主要是为了防止已失效的连接请求报文段突然又传送到了B，因而产生错误。</p>
+<h3 id="为什么要采用三次握手？"><a href="#为什么要采用三次握手？" class="headerlink" title="为什么要采用三次握手？"></a>为什么要采用三次握手？</h3><p>就是为了防止已失效的连接请求报文段突然传送到了B，假定不采用三次握手，那么只要B发出确认，新的连接就建立了。由于A并没有发出建立连接的请求，因此不会理睬B的确认，也不会向B发送数据。但B确以为新的连接已经建立，并一直等待A发来数据。B的许多资源就这样白白浪费了。</p>
+<h2 id="TCP连接的释放"><a href="#TCP连接的释放" class="headerlink" title="TCP连接的释放"></a>TCP连接的释放</h2><p>数据传输结束后，通信的双方都可释放连接。现在A和B都处于连接建立的状态。A的应用进程先向其TCP发出连接释放的报文段，并停止再发送数据，主动关闭TCP连接。A把连接释放的报文段首部的FIN置1，其序号seq=u，它等于前面已传送过的数据的最后一个字节的序号加1。这时A进入FIN-WAIT-1（终止等待1）状态，等待B的确认。请注意，TCP规定，FIN报文段即使不携带数据，他也消耗掉一个序号</p>
+<p>！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" target="_blank" rel="noopener">image text</a></p>
+<p>B 收到连接释放报文段后即发出确认，确认号是ack=u+1，而这个报文段自己的序号是V，等于B前面已传送过的数据的最后一个字节的序号加1。然后B就进入关闭等待状态。TCP服务进程这时应通知高层应用进程，因而从A到B这个方向的连接就释放了，这时TCP连接处于半关闭状态，即A已经没有数据要发送了，但B若发送数据，A仍要接收。也就是说，从B到A这个方向的连接并未关闭。这个状态可能会持续一些时间。</p>
+<p>A收到B的确认后，就进入FIN-WAIT-2（终止等待2）状态，等待B发出的连接释放报文段。</p>
+<p>若B已经没有要向A发送的数据，其应用进程就通知TCP释放连接。这时B发出的连接释放报文段必须使FIN=1.现假定B的序号为w（在半关闭状态B可能又发送了一些数据）。B还必须重复上次已经发送过的确认号ack=u+1（A到B这个方向的连接已经关闭，没有从A到B发送的数据）。这时B就进入最后确认状态，等待A的确认。</p>
+<p>A在收到B的连接释放的报文后，必须对此发出确认。在确认报文段中的ACK=1，确认号ack=w+1，而自己的序列号seq=u+1（根据TCP标准，前面发送过的FIN报文段要消耗掉一个序号）。然后进入到TIME-WAIT（时间等待）状态。请注意，现在TCP连接还没有掉。必须经过时间等待计时器（TIME-WAIT）设置的2MSL后，A才进入CLOSED状态。时间MSL叫做最长报文段寿命。当A撤销相应的传输控制块TCB后，就结束了这次TCP连接。</p>
+<h3 id="为什么A要在TIME-WAIT状态必须等待2MSL的时间呢？这有两个理由"><a href="#为什么A要在TIME-WAIT状态必须等待2MSL的时间呢？这有两个理由" class="headerlink" title="为什么A要在TIME-WAIT状态必须等待2MSL的时间呢？这有两个理由"></a>为什么A要在TIME-WAIT状态必须等待2MSL的时间呢？这有两个理由</h3><p>第一，为了保证A发送的最后一个ACK报文段能够达到B。这个ACK报文段有可能丢失，因而使处在LAST-ACK状态的B收不到对已发送的FIN–ACK报文段的确认。B会超时重传这个FIN+ACK报文段，而A就能在2MSL时间内收到这个重传的FIN+ACK报文段。接着A重传一次确认，2MSL计时器。最后，A和B都正常进入到CLOSED状态。如果A在TIME_WAIT状态不等待一段时间，而是在发送完ACK报文段后立即释放连接，name久无法收到B重传的FIN+ACK报文段，因而也不会在发送一次确认报文段。这样，B就无法按照正常步骤进入CLOSED状态。<br><br>第二，防止前面提到的”已失效的连接请求报文段”出现在本连接中。A在发送完最后一个ACK报文段后，再经过2MSL，就可以是本连接持续的时间内所产生的所有报文都从网络中消失。这样就可以是下一个连接中不会出现旧的连接请求报文段。</p>
+<p>B收到A的确认后就进入CLOSED状态。同样，B在撤销相应的传输控制块TCB后，就结束了这次TCP连接。</p>
+<h1 id="域名到IP地址的解析过程"><a href="#域名到IP地址的解析过程" class="headerlink" title="域名到IP地址的解析过程"></a>域名到IP地址的解析过程</h1><p>当某一个应用进程需要把主机名解析为IP地址时，该应用进程就调用解析程序，并成为DNS的一个客户，把带解析的域名放在DNS请求报文中，以UDP用户数据报方式发给本地域名服务器（使用UDP是为了减小开销）。本地域名服务器在查找域名后，把对应的IP地址方在回答报文中返回。应用进程获得目的主机的IP地址后即可进行通信。</p>
+<p>若本地域名服务器不能回答该请求，则此域名服务器就暂时成为DNS中的拎一个客户，并向其他域名服务器发出查询请求。这种过程直至找到能回答该域名请求的域名服务器为止。</p>
+<p>DNS即不规定一个域名需要包含多少个下级域名，也不规定每一级的域名代表什么意思。各级域名有其上一级的域名管理机构管理，而最高级的顶级域名则由ICANN进行管理。用着红方法可以使没一个域名在整个因特网范围内是唯一的，并且也容易设计出一种查找域名的机制。</p>
+<p>当DNS客户向某个根域名服务器进行查询是，因特网上的路由器就能找到离这个DNS客户最近的一个根域名服务器。这样做不仅加快了DNS的查询过程，也更加合理的利用因特网的资源。</p>
+<p>在许多情况下，根域名服务器并不直接把带查询的域名直接转换成IP地址（根域名服务器也没有存放这种信息），而是告诉本地服务器下一步应当找哪一些顶级域名服务器进行查询。</p>
+<h3 id="下面简单讨论一下域名的解析过程，这里要注意两点"><a href="#下面简单讨论一下域名的解析过程，这里要注意两点" class="headerlink" title="下面简单讨论一下域名的解析过程，这里要注意两点."></a>下面简单讨论一下域名的解析过程，这里要注意两点.</h3><p>第一，主机向本地域名服务器的查询一般都是采用 递归查询。所谓递归查询就是：如果主机所询问的本地域名服务器不知道被查询域名的IP地址，name本地域名服务器就以DNS客户的身份，向其他根域名服务器继续发出查询请求报文，而不是让该主机自己进行下一步查询。因此，递归查询返回的查询结果或则是索要查询的IP地址，或则是报错，表示无法查询到所需的IP地址。<br>第二，本地域名服务器向根域名服务器的查询通常是采用 迭代查询的特点是这样的：当根域名服务器收到本地域名服务器发出的迭代查询请求报文时，要么给出索要查询的IP地址，要么告诉本地域名服务器：“你下一步应当向哪一个域名服务器进行查询”。然后让本地域名服务器进行后续查询。根域名服务器通常是通常把自己知道的顶级域名服务器的IP地址告诉本地域名服务器，让本地域名服务器再向顶级域名服务器查询。顶级域名服务器再收到本地域名服务器的额查询请求后，要么给出所要查询的IP地址，要么告诉本地域名服务器下一步应当向哪一个权限域名服务器进行查询。本地域名服务器就这样进行迭代查询。最后你知道配所要了解的域名的IP地址，然后把这和结果返回给发起查询的主机。当然本地域名服务器采用递归查询</p>
+<h1 id="文件传送协议"><a href="#文件传送协议" class="headerlink" title="文件传送协议"></a>文件传送协议</h1><p>  FTP<br>文件传输协议FTP只提供文件传送的一些基本服务，它使用TCP可靠的运输服务。FTP的主要功能是减少或则消除在不同操作系统下处理文件的不兼容性。<br>FTP使用客户服务器方式。一个FTP服务进程课同时为多个客户进程提供服务。FTP的服务进程有两部分组成：一个主进程，负责接收新的请求；另外有若干个从属进程，负责处理单个请求。<br>主进程的工作步骤如下：<br>（1）打开熟知端口（端口号为21），使客户进程能够连接上<br>（2）等待客户进程发出连接请求<br>（3）启动从属进程来处理客户进程发来的请求。从属进程对客户进程的请求处理完毕后即终止，但从属进程在运行期间根据需要还可能穿件其他一些子进程。<br>（4）回到等待状态，继续接受其他客户进程发来的请求。主进程与从属进程的处理是并发进行的。<br>TFTP协议：简单的文件传输协议<br>TFTP的主要优点有两个：<br>第一，TFTP可用于UDP环境<br>第二，TFTP代码所占的内存较小<br>特点：<br>（1）每次传送的数据报文中有512字节的数据，但最后一次课不住512字节<br>（2）数据报文按序编号，从1开始<br>（3）支持ASCII码或二进制传送<br>（4）可对文件进行读或则写<br>（5）使用很贱的首部</p>
+<p>#万维网<br>（1）万维网使用同一资源定位符URL来标志万维网上的各种文档，并使没一个文档在整个因特网的范围内具有唯一的标识符URL<br>（2）万维网客户程序与万维网服务器程序之间的交互遵守严格的协议，这就是草文本传输协议HTTP，它是一个应用层协议，它使用TCP连接进行可靠的传送<br>（3）万维网使用超文本标记语言HTML，使得万维网页面的设计只可以很方便地用链接从本页面的某处连接到因特网上的任何一个万维网页面，并且能够在自己的主机屏幕上将这些页面显示出来。</p>
+<h3 id="URL："><a href="#URL：" class="headerlink" title="URL："></a>URL：</h3><p>&lt;协议&gt;：//&lt;主机&gt;：&lt;端口&gt;/&lt;路径&gt;<br>第一部分写&lt;协议&gt;是指使用什么协议来获取该万维网文档。现在最常用的协议就是http，其次是ftp。协议后面的：//不能省略，它右边的第二部分&lt;主机&gt;，指出这个万维网文档时在哪一个主机上。这里的主机就是指该主机在因特网上的域名，在后面是第三和第四部分&lt;端口&gt;和&lt;路径&gt;，有时可省略</p>
+<p>##HTTP协议<br>HTTP协议的默认端口号是：80</p>
+<p>#什么是https协议<br>HTTPS是在HTTP上建立SSL加密层，并对传输数据进行加密，是HTTP协议的安全版。HTTPS主要作用是：<br>（1）对数据进行加密，并建立一个信息安全通道，来保证传输过程中的数据安全；<br>（2）对网站服务器进行身份认证</p>
+<p>TLS/SSL全称安全传输层协议Transport Layer Security, 是介于TCP和HTTP之间的一层安全协议，不影响原有的TCP协议和HTTP协议，所以使用HTTPS基本上不需要对HTTP页面进行太多的改造<br>！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/HTTPS.png" target="_blank" rel="noopener">image text</a></p>
+<p>hhttps使用了哪些密钥？<br>对称密钥和非对称密钥:<br>对称密钥：加密和解密都用同一种密钥     非对称密钥：加密和解密使用不同的密钥</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/07/计算机网络/" data-id="cjuajt94h000lfcamqce9gguk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-test-md" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/26/test-md/" class="article-date">
+  <time datetime="2018-12-26T07:46:24.000Z" itemprop="datePublished">2018-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/26/test-md/">test.md</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>aaa</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/26/test-md/" data-id="cjuajt7rh0006fcambt4u0fg3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-HTTPS详解" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/26/HTTPS详解/" class="article-date">
+  <time datetime="2018-12-26T07:46:24.000Z" itemprop="datePublished">2018-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/26/HTTPS详解/">HTTPS详解.md</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HTTPS协议详解"><a href="#HTTPS协议详解" class="headerlink" title="HTTPS协议详解"></a>HTTPS协议详解</h1><h2 id="HTTP的缺点"><a href="#HTTP的缺点" class="headerlink" title="HTTP的缺点"></a>HTTP的缺点</h2><p>1.通信使用明文（不加密），内容可能被窃取 2.不验证通信方的身份，因此有可能遭遇伪装 3.无法证明报文的完整性，所以有可能已经被篡改 这些问题不仅在HTTP上出现，其他未加密的协议也会存在这类问题</p>
+<h3 id="通信使用明文可能会被窃听"><a href="#通信使用明文可能会被窃听" class="headerlink" title="通信使用明文可能会被窃听"></a>通信使用明文可能会被窃听</h3><p>由于HTTP本身不具备加密的功能，所以也无法做到对通信整体进行加密，即，HTTP报文使用明文（未经过加密的报文）方式发送。</p>
+<h3 id="加密防止被窃听"><a href="#加密防止被窃听" class="headerlink" title="加密防止被窃听"></a>加密防止被窃听</h3><p>在目前大家正在研究的如何防止窃听保护信息的几种对策中。加密的对象可以有这么几个：</p>
+<h4 id="通信的加密"><a href="#通信的加密" class="headerlink" title="通信的加密"></a>通信的加密</h4><p>一种方式就是讲通信加密。HTTP协议中没有加密机制，但可以通过和SSL（安全套接层）或TLS（安全传输协议）的组合使用，加密HTTP的通信内容。 用SSL建立安全通信线路后，就可以在这条线路上进行HTTP通信了。与SSL组合使用的HTTP被称为HTTPS（超文本传输安全协议）</p>
+<h4 id="内容的机密"><a href="#内容的机密" class="headerlink" title="内容的机密"></a>内容的机密</h4><p>还有一种将参与通信的内容本身加密的方式。由于HTTP协议中没有加密机制，那么就对HTTP协议传输的内容本身加密。即把HTTP报文里所含的内容进行加密处理。在这种情况下，客户端要对HTTP报文进行加密处理后在发送请求。</p>
+<h4 id="HTTP协议的实现本身非常简单，不论是谁发过来的请求都会返回响应，因此不确认通信方，会存在以下各种隐患"><a href="#HTTP协议的实现本身非常简单，不论是谁发过来的请求都会返回响应，因此不确认通信方，会存在以下各种隐患" class="headerlink" title="HTTP协议的实现本身非常简单，不论是谁发过来的请求都会返回响应，因此不确认通信方，会存在以下各种隐患"></a>HTTP协议的实现本身非常简单，不论是谁发过来的请求都会返回响应，因此不确认通信方，会存在以下各种隐患</h4><p>1.无法确定请求发送至目标的Web服务器是否按真实意图返回响应的那台服务器，因此不确认通信方。有可能是已伪装的web服务器。<br>2.无法确定响应返回到的客户端是否是真实意图接受响应的客户端。有可能是已伪装的客户端。<br>3.无法确定正在通信的对方是否具备访问权限。因为某些web服务器上保存着重要的信息，只想发给特定用户通信的权限<br>4.无法判定请求来自何方，出自谁手。<br>5.即使是无意义的请求也会照单全收。无法阻止海量请求下的Dos攻击</p>
+<p>###查明对手的证书<br>虽然使用HTTP协议无法确定通信方，但是如果使用SSL则可以。SSL不仅提供加密处理，而且还使用了一种被称为证书的手段，可用于确定方。证书由值得信任的第三方机构颁发，用以证明服务器和客户端是实际存在的。另外，伪造证书从技术角度来说是异常困难的一件事。所以只要能够确认通信方持有的证书，即可判断通信方的真实意图。通过使用证书，以证明通信方就是意料中的服务器。</p>
+<h3 id="接收到的内容可能有误"><a href="#接收到的内容可能有误" class="headerlink" title="接收到的内容可能有误"></a>接收到的内容可能有误</h3><p>由于HTTP协议证明通信的报文完整性，因此，在请求或响应发送出去之后直到对方接收之前的这段时间内，即使请求或响应的内容遭到篡改，也没有办法获悉。换句话说，没有任何办法确认，发出的请求 响应和接收到的请求响应四前后相同的。</p>
+<h4 id="如何防止被篡改"><a href="#如何防止被篡改" class="headerlink" title="如何防止被篡改"></a>如何防止被篡改</h4><p>虽然HTTP有使用确认报文完整性的方法，但事实上并不便捷，可靠。其中常用的是MD5和SHA—1等散列值校验的方法，以及迎来确认文件的数字签名方法。可惜的是，用这些方法也依然无法确保确认结果正确。因为PGP和MD5本身被改写的话，用户是没有办法意识到的。</p>
+<h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+加密+认证+完整性保护=HTTPS"></a>HTTP+加密+认证+完整性保护=HTTPS</h3><p>HTTP加上加密处理和认证以及完整性保护后即是HTTPS。<br>经常会在 Web 的登录页面和购物结算界面等使用 HTTPS 通信。使用 HTTPS 通信时，不再用 http://，而是改用 https://。另外，当浏览器访问 HTTPS 通信有效的 Web网站时，浏览器的地址栏内会出现一个带锁的标记。对 HTTPS 的显示方式会因浏览器的不同而有所改变。</p>
+<h3 id="HTTPS是身披SSL外壳的HTTP"><a href="#HTTPS是身披SSL外壳的HTTP" class="headerlink" title="HTTPS是身披SSL外壳的HTTP"></a>HTTPS是身披SSL外壳的HTTP</h3><p>HTTPS并非是应用层的一种新协议。只是HTTP通信接口部分用SSL和TLS协议代替而已。通常，HTTP直接和TCP通信。当时用SSL时，则演变成先和SSL通信，再由SSL和TCP通信了。简言之，其实就是身披SSL协议这层外壳的HTTP。<br>！<a href="https://github.com/jiashukai/jiakai/blob/master/source/_posts/pictures/HTTPS1.png" target="_blank" rel="noopener">image text</a><br>采用SSL后，HTTP就拥有了HTTPS的加密，证书和完整性保护这些功能。SSL是独立于HTTP的协议，其他运行在应用层的SMTP和Telnet等协议均可配合SSL协议使用。可以说SSL是当今世界上应用最为广泛的网络安全技术。</p>
+<h2 id="相互交换密钥的公开密钥加密技术"><a href="#相互交换密钥的公开密钥加密技术" class="headerlink" title="相互交换密钥的公开密钥加密技术"></a>相互交换密钥的公开密钥加密技术</h2><p>在对SSL进行讲解之前，我们先来了解一下加密方法。SSL采用一种公开密钥加密的加密处理方式。近代的加密方法中加密算法是公开的，而密钥却是保密的。通过这种方式得以保持加密方法的安全性。加密和解密都会用到密钥。没有密钥就无法对密钥进行解密，反过来说，任何人只要持有密钥就能解密了。如果密钥被攻击者获得，那加密也就失去了意义</p>
+<h3 id="共享密钥加密的困境"><a href="#共享密钥加密的困境" class="headerlink" title="共享密钥加密的困境"></a>共享密钥加密的困境</h3><p>加密和解密用同一个密钥的方式称为共享密钥，也被叫做对称密钥加密。<br>以共享密钥方式加密时必须将密钥也发给对方。可究竟怎么才能安全地转交？在互联网上转发密钥时，如果通信被监听name密钥就可会落入攻击者之手，同时也就失去了加密的意义。另外害的设法安全地保管接收到密钥。</p>
+<p>###使用两把密钥的公开密钥加密<br>公开密钥加密方式很好地解决了共享密钥加密的困难。<br>公开密钥加密使用一对非对称的密钥。一把叫做私有密钥，另一把叫做公开密钥。私有密钥不能让其他任何人知道，而公开密钥则可以随意发布，任何人都可以获得。公开密钥和私有密钥是配对的一套密钥。<br>使用公开密钥加密方式，发送密文的一方使用对方的公开密钥进行加密处理，对方收到被加密的信息后，再使用自己的私有密钥进行解密。利用这种方式，不需要发送用来解密的私有密钥，也不必担心被攻击者窃听而盗走。<br>另外，要想根据密文和公开密钥，恢复到信息原文是异常困难的，因为解密过程就是在对离散对数进行求值，这并非轻而易举就能办到的。退一步讲，如果能对一个非常强大的整数做到快速地因式分解，name密码破解还是存在希望的。但就目前的技术来看还不太实现</p>
+<p>#HTTPS采用混合加密机制<br>HTTPS采用共享密钥加密和公开密钥加密两者并用的混合加密机制<br>（1）使用公开密钥加密方式安全地交换在稍后的共享密钥中要使用的密钥<br>（2）确保交换的密钥时安全地前提下，使用共享密钥加密方式进行通信</p>
+<h2 id="为什么不一直使用HTTPS"><a href="#为什么不一直使用HTTPS" class="headerlink" title="为什么不一直使用HTTPS"></a>为什么不一直使用HTTPS</h2><p>既然HTTPS那么安全可靠，那为何所有的web网站不一直使用HTTPS？<br>其中一个原因是，因为与纯文本通信相比，加密通信会消耗更多的CPU及内存资源。如果每次通信都加密，会消耗相当多的资源，平摊到一台计算机上时，能够处理的请求数量必定也会随之减少。<br>因此如果是非敏感信息则使用HTTP通信，只有在包含个人信息等敏感数据时，才利用HTTPS加密通信。<br>特别是每当那些访问量较多的web网站在进行加密处理时，它们索承担多的负载不容小觑。在进行加密处理时，并非对所有内容都进行加密处理，而是仅在那些需要信息隐藏时才会加密，节约资源。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/26/HTTPS详解/" data-id="cjuajt7qw0000fcamp9qczrdt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/26/hello-world/" class="article-date">
+  <time datetime="2018-12-26T07:38:38.352Z" itemprop="datePublished">2018-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/26/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/26/hello-world/" data-id="cjuajt7r60003fcamjezps4wy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    <!-- Featured Tags -->
+
+  
+    <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
+
+  
+    
+  <h5>RECENT POSTS
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2019/04/08/动态代理/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/04/08/springAOP/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/25/dubbo/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/22/操作系统_存储器管理和虚拟存储器/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/21/操作系统_处理机的调度与死锁/">(no title)</a>
+        </li>
+      
+    </ul>
+  </div>
+</h5>
+  
+    <!-- Friends Blog -->
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

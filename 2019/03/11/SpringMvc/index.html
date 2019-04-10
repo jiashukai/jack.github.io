@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringMVC  架构SpringMVC架构图 SpringMVC  架构说明 用户发送请求至前端控制器DispatcherServlet DispatcherServlet收到请求调用HandlerMapping处理器映射器 处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器（如果有则生成）一并返回DispatcherServlet DispatcherServlet通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/SpringMvc/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringMVC  架构SpringMVC架构图 SpringMVC  架构说明 用户发送请求至前端控制器DispatcherServlet DispatcherServlet收到请求调用HandlerMapping处理器映射器 处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器（如果有则生成）一并返回DispatcherServlet DispatcherServlet通">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/SpringMvc/pictures/springMvc架构.png">
+<meta property="og:updated_time" content="2019-03-11T13:59:27.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="SpringMVC  架构SpringMVC架构图 SpringMVC  架构说明 用户发送请求至前端控制器DispatcherServlet DispatcherServlet收到请求调用HandlerMapping处理器映射器 处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器（如果有则生成）一并返回DispatcherServlet DispatcherServlet通">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/11/SpringMvc/pictures/springMvc架构.png">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SpringMvc" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/SpringMvc/" class="article-date">
+  <time datetime="2019-03-11T07:49:01.150Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringMVC-架构"><a href="#SpringMVC-架构" class="headerlink" title="SpringMVC  架构"></a>SpringMVC  架构</h2><h4 id="SpringMVC架构图"><a href="#SpringMVC架构图" class="headerlink" title="SpringMVC架构图"></a>SpringMVC架构图</h4><p><img src="pictures/springMvc架构.png" alt="SpringMVC架构"></p>
+<h4 id="SpringMVC-架构说明"><a href="#SpringMVC-架构说明" class="headerlink" title="SpringMVC  架构说明"></a>SpringMVC  架构说明</h4><ol>
+<li>用户发送请求至前端控制器DispatcherServlet</li>
+<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器</li>
+<li>处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器（如果有则生成）一并返回DispatcherServlet</li>
+<li>DispatcherServlet通过处理器适配器（HandlerAdapter）调用处理器</li>
+<li>执行处理器（Controller）</li>
+<li>Controller执行完成返回ModelAndView</li>
+<li>处理器适配器将Controller执行结果ModelAndView返回给dispatcherServlet</li>
+<li>DispatcherServlet将controller执行结果ModelAndView返回给DispatcherServlet</li>
+<li>DispatcherServlet将ModelAndView传给视图解析器</li>
+<li>ViewReslover解析后返回具体View</li>
+<li>DispatcherServlet对view进行渲染视图（将模型数据填充至视图）</li>
+<li>DispatcherServlet响应用户</li>
+</ol>
+<h4 id="组件说明"><a href="#组件说明" class="headerlink" title="组件说明"></a>组件说明</h4><p><strong>    DispatcherServlet：前端控制器</strong></p>
+<p>用户请求到达前端控制器，它就相当于mvc模式中的c，dispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，dispatcherServlet的存在降低了组件之间的耦合性。</p>
+<p><strong>HandlerMapping：处理器映射器</strong></p>
+<p>HandlerMapping负责根据用户请求找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。</p>
+<p><strong>HandlAdapter：处理器适配器</strong></p>
+<p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p>
+<p><strong>    Handler：处理器</strong></p>
+<p>Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。</p>
+<p><strong>View Resolver：视图解析器</strong></p>
+<p>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p>
+<p><strong>View：视图</strong></p>
+<p>springmvc框架提供了很多的View视图类型的支持，包括：jstlView、freemarkerView、pdfView等。我们最常用的视图就是jsp。</p>
+<p><strong>如果在springMvc中没有显示的配置处理器映射器和处理器适配器，那么springMvc会默认的去DispatcherServlet.properties中查找，对应的处理器映射器和适配器去使用，这样每个请求都要去烧苗一次他的默认配置文件，效率非常低，会降低访问速度，所以要显示的配置处理器映射器和处理器适配器</strong></p>
+<h4 id="注解式处理器映射器和注解式处理器适配器"><a href="#注解式处理器映射器和注解式处理器适配器" class="headerlink" title="注解式处理器映射器和注解式处理器适配器"></a>注解式处理器映射器和注解式处理器适配器</h4><p>注解式处理器映射器，对类中标记@ResquestMapping的方法进行映射，根据ResquestMapping定义的url匹配ResquestMapping标记的方法，匹配成功返回HandlerMethod对象给前端控制器，HandlerMethod对象中封装url对应的方法Method。</p>
+<pre><code>&lt;!--注解映射器 --&gt;
+&lt;beanclass=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;/&gt;
+</code></pre><p><strong>4.5.4    <a href="mvc:annotation-driven" target="_blank" rel="noopener">mvc:annotation-driven</a></strong></p>
+<p>springmvc使用<a href="mvc:annotation-driven" target="_blank" rel="noopener">mvc:annotation-driven</a>自动加载RequestMappingHandlerMapping和RequestMappingHandlerAdapter，可用在springmvc.xml配置文件中使用<a href="mvc:annotation-driven" target="_blank" rel="noopener">mvc:annotation-driven</a>替代注解处理器和适配器的配置。自动配置最新版的适配器和映射器</p>
+<p><strong>7    springmvc与struts2不同</strong></p>
+<p>1、    springmvc的入口是一个servlet即前端控制器，而struts2入口是一个filter过虑器。</p>
+<p>2、    springmvc是基于方法开发(一个url对应一个方法)，请求参数传递到方法的形参，可以设计为单例或多例(建议单例)，struts2是基于类开发，传递参数是通过类的属性，只能设计为多例。</p>
+<p>3、    Struts采用值栈存储请求和响应的数据，通过OGNL存取数据， springmvc通过参数解析器是将request请求内容解析，并给方法形参赋值，将数据和视图封装成ModelAndView对象，最后又将ModelAndView中的模型数据通过reques域传输到页面。Jsp视图解析器默认使用jstl。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/SpringMvc/" data-id="cjuajt7r20001fcam7bc9bnn3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/腾讯面试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/09/maven/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <!-- Featured Tags -->
+
+  
+    <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
+
+  
+    
+  <h5>RECENT POSTS
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2019/04/08/动态代理/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/04/08/springAOP/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/25/dubbo/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/22/操作系统_存储器管理和虚拟存储器/">(no title)</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/21/操作系统_处理机的调度与死锁/">(no title)</a>
+        </li>
+      
+    </ul>
+  </div>
+</h5>
+  
+    <!-- Friends Blog -->
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
